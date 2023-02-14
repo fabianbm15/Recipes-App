@@ -1,24 +1,46 @@
 import "./styles.css";
 import React from "react";
-import imagenPrueba from "../prueba.jpg";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Detail() {
+  const { detailId } = useParams();
+  const [recipe, setRecipe] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/recipes/${detailId}`
+        );
+        const data = response.data.data;
+        setRecipe(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div>
+    <div className="detail">
       <div className="divDetailImage">
-        <div>
-          <h1>Nombre</h1>
-          <h1>Tipo de plato</h1>
-          <h1>Tipo de dieta</h1>
-          <h1>Health Score</h1>
+        <div id="detailsA">
+          <h1>Title: {recipe.title}</h1>
+          <h3>
+            Dish Type: {recipe.dishTypes ? recipe.dishTypes.join(", ") : ""}
+          </h3>
+          <h3>Diet: {recipe.diets ? recipe.diets.join(", ") : ""}</h3>
+          <h3>Health Score: {recipe.healthScore}</h3>
         </div>
         <div>
-          <img src={imagenPrueba} alt="prueba.jpg" />
+          <img src={recipe.image} alt={recipe.image} />
         </div>
       </div>
-      <div>
-        <h1>Resumen</h1>
-        <h1>Paso a Paso</h1>
+      <div id="summaryInstructions">
+        <p>Summary: {recipe.summary}</p>
+        <p>Instructions: {recipe.instructions}</p>
       </div>
     </div>
   );

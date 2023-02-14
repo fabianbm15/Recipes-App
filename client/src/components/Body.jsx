@@ -1,14 +1,15 @@
 import React from "react";
 import Cards from "./Cards";
-import Filters from "./Filters";
 import Pages from "./Pages";
 
-export default function Body() {
+export default function Body(props) {
   return (
     <div className="body">
-      <Filters />
-      <Cards />
-      <Pages />
+      <Cards recipes={props.recipes} />
+      <Pages
+        currentPage={props.currentPage}
+        setCurrentPage={props.setCurrentPage}
+      />
     </div>
   );
 }

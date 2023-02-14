@@ -4,12 +4,12 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "Recipes",
+    "RecipesExts",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
       },
       title: {
         type: DataTypes.STRING,
@@ -21,11 +21,12 @@ module.exports = (sequelize) => {
       },
       dishTypes: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
+      },
+      diets: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       summary: {
         type: DataTypes.TEXT,
-        allowNull: false,
       },
       healthScore: {
         type: DataTypes.INTEGER,
@@ -33,7 +34,6 @@ module.exports = (sequelize) => {
       },
       instructions: {
         type: DataTypes.TEXT,
-        allowNull: false,
       },
     },
     {

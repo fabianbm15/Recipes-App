@@ -1,7 +1,7 @@
 .App {
   min-height: 100vh;
   min-width: auto;
-  /* background-image: url("./wallpaperFood.jpg"); */
+  background-image: url("./wallpaperFood.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

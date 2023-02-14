@@ -1,41 +1,93 @@
+/* login */
 .login {
   margin: auto;
   margin-top: 8%;
   background-color: white;
-  border-radius: 5px;
-  height: 200px;
-  width: 350px;
+  border-radius: 15px;
+  height: 300px;
+  width: 550px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  flex-direction: column;
 }
 
+.login h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 80px;
+  margin-top: 25px;
+  color: #1f2421;
+}
+
+.login button {
+  background-color: #49a078;
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 32px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 14px 15px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Nav Bar */
 .navBar {
-  height: 50px;
+  height: 70px;
   width: 96%;
   margin: 2%;
-
-  border-radius: 5px;
-  background-color: white;
+  border-radius: 15px;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-around;
-
-  border: 2px solid black;
 }
 
-.body {
+.navBar button {
+  background-color: #b4dde4;
+  color: #354259;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 9px 15px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+#logOutButton {
+  background-color: #fa7171;
+}
+
+/* SearchBar */
+.searchBar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  border: 2px solid red;
+  justify-content: space-around;
 }
 
+.searchBar input {
+  margin-right: 15px;
+  width: 150px;
+  height: 39px;
+  border-radius: 10px;
+  border: 1px solid #494949;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  color: #354259;
+}
+
+/* Filter */
 .filter {
-  margin: 2%;
-  border-radius: 5px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
   background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: space-around;
@@ -43,23 +95,41 @@
   width: 600px;
   height: auto;
   padding: 10px;
-
-  border: 2px solid blue;
 }
 
 .filter h4 {
-  margin: 0%;
+  margin-top: -2px;
   margin-bottom: 2%;
+  color: #354259;
+  font-size: 20px;
+}
+
+.filter select {
+  border-radius: 5px;
+}
+
+/* Body */
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: auto;
 }
 
 .cards {
-  width: 100%;
+  width: 90%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-
-  border: 2px solid red;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+  min-height: auto;
 }
 
 .card {
@@ -67,34 +137,74 @@
   width: 300px;
   height: 350px;
   margin: auto;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding: 1%;
-
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding: 3%;
   border-radius: 5px;
-  background-color: white;
+  background-color: #b4dde4;
   display: flex;
   flex-direction: column;
-
-  border: 2px solid black;
+  border-radius: 15px;
 }
 
 .card img {
   width: 100%;
   height: 230px;
+  border-radius: 15px;
 }
 
 .card button {
   position: absolute;
-  background-color: rgba(240, 248, 255, 0);
-  font-size: 22px;
+  background-color: rgba(3, 88, 161, 0);
+  font-size: 30px;
   border: 0px;
 }
 
-.card p {
-  margin: 4%;
-  font-size: 20px;
+.healthScore {
+  position: absolute;
+  font-size: 18px;
+  margin-left: 245px;
+  margin-top: -28px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 60px;
 }
+
+.healthScore p {
+  position: absolute;
+  margin-top: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  width: auto;
+}
+
+#nameLink {
+  text-decoration: none;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  color: #354259;
+
+  max-width: 100%;
+  max-height: 4em;
+  overflow: hidden;
+}
+
+.card h5 {
+  font-family: Trebuchet MS;
+  font-size: 15px;
+  font-weight: 100;
+  font-style: normal;
+  color: #354259;
+
+  max-width: 100%;
+  max-height: 4em;
+}
+
+/* Pages */
 
 .pages {
   height: 50px;
@@ -105,19 +215,37 @@
 .pages button {
   margin-left: 20px;
   margin-right: 20px;
-  width: 80px;
-  height: 30px;
   font-size: 20px;
+  background-color: #45696e;
+  color: #ffffff;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 9px 15px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  display: inline-block;
 }
 
-.pages p {
-  margin: 0;
-  font-size: 20px;
+#buttonCurrentPage {
+  background-color: #ffffff;
+  color: #26393b;
 }
 
 /* Detail */
-.divDetailImage {
+.detail {
   background-color: white;
+  padding: 2%;
+  border-radius: 25px;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.divDetailImage {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -127,12 +255,109 @@
   margin-top: 20px;
   margin-bottom: 20px;
   width: 500px;
+  border-radius: 15px;
+}
+
+#detailsA {
+  text-align: start;
+  width: 400px;
+}
+
+#detailsA h3 {
+  font-size: 16px;
+}
+
+#summaryInstructions {
+  margin: auto;
+  width: 1000px;
+  font-size: 16px;
+  font-weight: 100;
+  text-align: justify;
+}
+
+/* Favorites */
+.favorites h1 {
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: white;
+  font-family: Trebuchet MS;
+  font-size: 40px;
+  font-weight: 800;
+  font-style: normal;
+  color: #354259;
+  width: 350px;
+  border-radius: 15px;
+  padding: 10px;
+  padding-top: 5px;
 }
 
 /* Create */
 .form {
   margin: auto;
-  padding: 15px;
+  padding: 45px;
   background-color: white;
-  width: 500px;
+  width: 700px;
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  border-radius: 20px;
+
+  font-family: Trebuchet MS;
+  font-size: 20px;
+  font-weight: 800;
+  font-style: normal;
+  color: #354259;
+}
+
+.form input {
+  border-radius: 8px;
+  border: 1px solid black;
+  font-family: Trebuchet MS;
+  font-size: 20px;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.form h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 100;
+}
+
+.diets {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+
+  font-family: Trebuchet MS;
+  font-size: 15px;
+  font-weight: 100;
+  font-style: normal;
+  color: #354259;
+}
+
+.form button {
+  background-color: #49a078;
+  color: #fff;
+  font-family: Trebuchet MS;
+  font-size: 24px;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: none;
+  padding: 14px 15px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.warning {
+  color: rgb(223, 0, 0);
+}
+
+.danger {
+  color: rgb(223, 0, 0);
+  font-size: 12px;
 }
