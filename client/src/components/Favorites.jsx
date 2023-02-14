@@ -24,7 +24,7 @@ export default function Favorites() {
 
   return (
     <div className="favorites">
-      <h1>Favorites ❤️</h1>
+      <h1>Favorites ⭐</h1>
       <Filters handleClickFavorites={handleClickFavorites} />
       <div className="cards">
         {myFavorites.map((recipe) => (

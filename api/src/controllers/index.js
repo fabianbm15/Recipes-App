@@ -2,7 +2,8 @@ const axios = require("axios");
 const Sequelize = require("sequelize");
 require("dotenv").config();
 const { API_KEY } = process.env;
-const { Recipes, Diets, RecipeDiets, RecipesExts } = require("../db");
+const { Recipes, Diets, RecipesExts } = require("../db");
+const { v4: uuidv4 } = require("uuid");
 
 var fav = [];
 
@@ -86,26 +87,24 @@ const getRecipesId = async function (req, res) {
     let data = {};
     let recipe = {};
 
-    if (!Number(id)) {
-      data = await Recipes.findByPk(id);
-      if (data) {
-        const diets = await data.getDiets();
-        recipe = {
-          id: data.id,
-          title: data.title,
-          image: data.image,
-          dishTypes: data.dishTypes,
-          diets: diets.map((diet) => diet.name),
-          summary: data.summary,
-          healthScore: data.healthScore,
-          instructions: data.instructions,
-        };
-      } else {
-        return res.status(200).json({
-          message: "No existen recetas con este id.",
-          data: [],
-        });
-      }
+    data = await Recipes.findByPk(id);
+    if (data) {
+      const diets = await data.getDiets();
+      recipe = {
+        id: data.id,
+        title: data.title,
+        image: data.image,
+        dishTypes: data.dishTypes,
+        diets: diets.map((diet) => diet.name),
+        summary: data.summary,
+        healthScore: data.healthScore,
+        instructions: data.instructions,
+      };
+
+      return res.status(200).json({
+        message: "No existen recetas con este id.",
+        data: [],
+      });
     } else {
       const data = await RecipesExts.findByPk(id);
       if (data) {
@@ -273,7 +272,7 @@ const postRecipes = async (req, res) => {
 const downloadRecipes = async (req, res) => {
   try {
     let recipe = {};
-    for (let i = 0; i <= 100; i++) {
+    for (let i = 1; i <= 100; i++) {
       const API_URL = `https://api.spoonacular.com/recipes/${i}/information?apiKey=${API_KEY}`;
 
       try {
@@ -281,14 +280,16 @@ const downloadRecipes = async (req, res) => {
         const data = response.data;
 
         recipe = await RecipesExts.create({
-          id: data.id,
+          id: uuidv4(),
           title: data.title,
           image: data.image,
           dishTypes: data.dishTypes,
           diets: data.diets,
-          summary: data.summary,
+          summary: data.summary ? data.summary.replace(/<[^>]+>/g, "") : null,
           healthScore: data.healthScore,
-          instructions: data.instructions,
+          instructions: data.instructions
+            ? data.instructions.replace(/<[^>]+>/g, "")
+            : null,
         });
       } catch (error) {
         console.error(error);

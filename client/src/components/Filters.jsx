@@ -9,7 +9,7 @@ export default function Filters(props) {
   return (
     <div className="filter">
       <div>
-        <h4>Filter</h4>
+        <h4>Filter Diets</h4>
         <select
           name="filter"
           defaultValue={"Default"}

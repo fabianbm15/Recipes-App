@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, deleteFavorite } from "./redux/actions";
+import healthScoreImage from "../healthScore.png";
+import favoritesOn from "../favorites_on.png";
+import favoritesOff from "../favorites_off.png";
 
 export default function Card(props) {
   const { id, title, diets, image, healthScore } = props;
@@ -31,25 +34,31 @@ export default function Card(props) {
 
   return (
     <div className="card">
-      <img src={image} alt={image} />
+      <img className="imageRecipe" src={image} alt={image} />
       {isFav ? (
         <button
+          className="favoritesButton"
           onClick={() => {
             handleFavorite(props);
           }}
         >
-          ❤️
+          <img src={favoritesOn} alt={favoritesOn} />
         </button>
       ) : (
-        <button onClick={() => handleFavorite(props)}>🤍</button>
+        <button
+          className="favoritesButton"
+          onClick={() => handleFavorite(props)}
+        >
+          <img src={favoritesOff} alt={favoritesOff} />
+        </button>
       )}
       <div className="healthScore">
-        <h1>⭐</h1>
+        <img src={healthScoreImage} alt={healthScoreImage} />
         <p>{healthScore}</p>
       </div>
 
       <Link id="nameLink" to={`/detail/${id}`}>
-        <h3>{title}</h3>
+        <p>{title}</p>
       </Link>
       <h5>Diets: {textDiets}</h5>
     </div>

@@ -7,9 +7,9 @@ module.exports = (sequelize) => {
     "RecipesExts",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4,
       },
       title: {
         type: DataTypes.STRING,

@@ -1,66 +1,70 @@
 /* login */
 .login {
-  margin: auto;
-  margin-top: 8%;
-  background-color: white;
-  border-radius: 15px;
-  height: 300px;
-  width: 550px;
   display: flex;
-  justify-content: start;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.bienvenidos {
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+  height: auto;
+  width: 500px;
+}
+
+.loginImage {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  z-index: -1;
 }
 
 .login h1 {
   font-family: "Times New Roman", Times, serif;
   font-size: 80px;
-  margin-top: 25px;
-  color: #1f2421;
+  color: #314e52;
+  margin-top: 10px;
 }
 
 .login button {
-  background-color: #49a078;
-  color: #fff;
-  font-family: Trebuchet MS;
-  font-size: 32px;
-  font-weight: 800;
-  font-style: normal;
-  text-decoration: none;
+  background-color: #49a07700;
+  color: #314e52;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 28px;
   padding: 14px 15px;
-  border: 0px solid #000;
-  border-radius: 10px;
-  display: inline-block;
+  border: 0px;
+  border-bottom: 1px solid black;
+  margin-bottom: 40px;
+  cursor: pointer;
 }
 
 /* Nav Bar */
 .navBar {
-  height: 70px;
-  width: 96%;
-  margin: 2%;
-  border-radius: 15px;
-  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  height: 90px;
+  width: 100%;
+  background-color: #ffffffef;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 .navBar button {
-  background-color: #b4dde4;
-  color: #354259;
-  font-family: Trebuchet MS;
-  font-size: 18px;
-  font-weight: 800;
-  font-style: normal;
-  text-decoration: none;
-  padding: 9px 15px;
-  border: 0px solid #000;
-  border-radius: 10px;
-  display: inline-block;
-}
+  color: black;
+  background-color: #00000000;
+  border: 0px;
+  cursor: pointer;
 
-#logOutButton {
-  background-color: #fa7171;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
 }
 
 /* SearchBar */
@@ -71,15 +75,18 @@
 
 .searchBar input {
   margin-right: 15px;
-  width: 150px;
+  width: 300px;
   height: 39px;
-  border-radius: 10px;
-  border: 1px solid #494949;
-  font-family: Trebuchet MS;
-  font-size: 18px;
-  font-weight: 800;
-  font-style: normal;
-  color: #354259;
+  border: 1px solid #00000059;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
 }
 
 /* Filter */
@@ -87,10 +94,9 @@
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 15px;
   background-color: rgb(255, 255, 255);
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   width: 600px;
   height: auto;
@@ -100,12 +106,22 @@
 .filter h4 {
   margin-top: -2px;
   margin-bottom: 2%;
-  color: #354259;
-  font-size: 20px;
+
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
 }
 
 .filter select {
-  border-radius: 5px;
+  width: 150px;
+  height: 20px;
+
+  font-size: 15px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
 }
 
 /* Body */
@@ -118,8 +134,9 @@
   min-height: auto;
 }
 
+/* Cards */
 .cards {
-  width: 90%;
+  width: 95%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
@@ -133,75 +150,76 @@
 }
 
 .card {
-  position: relative;
   width: 300px;
   height: 350px;
   margin: auto;
   margin-top: 3%;
   margin-bottom: 3%;
-  padding: 3%;
-  border-radius: 5px;
-  background-color: #b4dde4;
+  background-color: #314e52;
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.card img {
+.imageRecipe {
   width: 100%;
-  height: 230px;
-  border-radius: 15px;
+  height: auto;
 }
 
-.card button {
+.favoritesButton {
   position: absolute;
-  background-color: rgba(3, 88, 161, 0);
-  font-size: 30px;
+  margin-top: 5px;
+  margin-left: -250px;
+  background-color: #00000000;
   border: 0px;
+  cursor: pointer;
+}
+
+.favoritesButton img {
+  width: 35px;
+  height: 35px;
 }
 
 .healthScore {
   position: absolute;
-  font-size: 18px;
-  margin-left: 245px;
-  margin-top: -28px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: 60px;
+  margin-top: 3px;
+  margin-left: 250px;
+}
+
+.healthScore img {
+  width: 40px;
+  height: 40px;
 }
 
 .healthScore p {
-  position: absolute;
-  margin-top: 44px;
-  font-size: 13px;
+  margin-top: -35px;
   font-weight: 600;
-  text-align: center;
-  width: auto;
 }
 
 #nameLink {
-  text-decoration: none;
-  font-family: Trebuchet MS;
-  font-size: 18px;
-  font-weight: 800;
-  font-style: normal;
-  color: #354259;
-
-  max-width: 100%;
-  max-height: 4em;
+  width: 92%;
+  max-height: 3.6em;
   overflow: hidden;
+  cursor: pointer;
+
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 18px;
+  color: #e7e6e1;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
 }
 
 .card h5 {
-  font-family: Trebuchet MS;
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 15px;
   font-weight: 100;
   font-style: normal;
-  color: #354259;
+  color: #e7e6e1;
 
-  max-width: 100%;
-  max-height: 4em;
+  max-width: 92%;
+  max-height: 2.6em;
+  overflow: hidden;
 }
 
 /* Pages */
@@ -210,28 +228,24 @@
   height: 50px;
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .pages button {
   margin-left: 20px;
   margin-right: 20px;
   font-size: 20px;
-  background-color: #45696e;
-  color: #ffffff;
-  font-family: Trebuchet MS;
-  font-size: 18px;
-  font-weight: 800;
-  font-style: normal;
-  text-decoration: none;
-  padding: 9px 15px;
-  border: 0px solid #000;
-  border-radius: 10px;
-  display: inline-block;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
 }
 
 #buttonCurrentPage {
   background-color: #ffffff;
-  color: #26393b;
+  color: #000000;
+  border: 0px;
+  cursor: auto;
 }
 
 /* Detail */
@@ -239,9 +253,8 @@
   background-color: white;
   padding: 2%;
   border-radius: 25px;
-  font-family: Trebuchet MS;
-  font-size: 18px;
-  font-weight: 800;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 17px;
   font-style: normal;
 }
 
@@ -255,7 +268,6 @@
   margin-top: 20px;
   margin-bottom: 20px;
   width: 500px;
-  border-radius: 15px;
 }
 
 #detailsA {
@@ -280,7 +292,7 @@
   margin: auto;
   margin-bottom: 20px;
   background-color: white;
-  font-family: Trebuchet MS;
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 40px;
   font-weight: 800;
   font-style: normal;
@@ -296,24 +308,24 @@
   margin: auto;
   padding: 45px;
   background-color: white;
-  width: 700px;
+  width: 800px;
   display: flex;
   justify-content: flex-start;
   text-align: start;
   border-radius: 20px;
 
-  font-family: Trebuchet MS;
-  font-size: 20px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 17px;
   font-weight: 800;
   font-style: normal;
-  color: #354259;
+  color: #222b3a;
 }
 
 .form input {
-  border-radius: 8px;
-  border: 1px solid black;
-  font-family: Trebuchet MS;
-  font-size: 20px;
+  border: 0px;
+  border-bottom: 1px solid black;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 17px;
   font-weight: 100;
   font-style: normal;
 }
@@ -332,7 +344,7 @@
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
 
-  font-family: Trebuchet MS;
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 15px;
   font-weight: 100;
   font-style: normal;
@@ -342,15 +354,14 @@
 .form button {
   background-color: #49a078;
   color: #fff;
-  font-family: Trebuchet MS;
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 24px;
-  font-weight: 800;
-  font-style: normal;
-  text-decoration: none;
-  padding: 14px 15px;
-  border: 0px solid #000;
-  border-radius: 10px;
+  font-weight: 400;
+  padding: 8px;
+  border: 0px;
+  border-radius: 3px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .warning {

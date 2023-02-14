@@ -1,11 +1,6 @@
 .App {
   min-height: 100vh;
   min-width: auto;
-  background-image: url("./wallpaperFood.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   text-align: center;
-  padding: 1%;
+  padding-top: 90px;
 }

@@ -11,7 +11,6 @@ import Detail from "./components/Detail";
 import Create from "./components/Create";
 import Favorites from "./components/Favorites";
 import { useSelector, useDispatch } from "react-redux";
-import { filterCards } from "./components/redux/actions";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,33 +18,44 @@ function App() {
   const [selectedFilter, setSelectedFilter] = useState("Default");
   const [selectedOrderAlpha, setSelectedOrderAlpha] = useState("Default");
   const [selectedOrderHs, setSelectedOrderHs] = useState("Default");
+  const [searchTerm, setSearchTerm] = useState("");
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const itemsPerPage = 9;
-  const myFavorites = useSelector((s) => s.myFavorites);
-  const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/allrecipes`);
-      var data = response.data.data;
+      let allData = [];
+      if (!searchTerm) {
+        const response = await axios.get(`http://localhost:3001/allrecipes`);
+        allData = response.data.data;
+      } else {
+        const response = await axios.get(
+          `http://localhost:3001/recipes?title=${searchTerm}`
+        );
+        allData = response.data.data;
+      }
+
+      let filteredData = allData;
+
       if (selectedFilter !== "Default") {
-        data = data.filter((e) => {
+        filteredData = allData.filter((e) => {
           return e.diets.includes(selectedFilter);
         });
       }
+
       if (selectedOrderAlpha === "A-Z") {
-        data.sort((a, b) => a.title.localeCompare(b.title));
+        filteredData.sort((a, b) => a.title.localeCompare(b.title));
       } else if (selectedOrderAlpha === "Z-A") {
-        data.sort((a, b) => b.title.localeCompare(a.title));
+        filteredData.sort((a, b) => b.title.localeCompare(a.title));
       }
       if (selectedOrderHs === "Ascendente") {
-        data.sort((a, b) => a.healthScore - b.healthScore);
+        filteredData.sort((a, b) => a.healthScore - b.healthScore);
       } else if (selectedOrderHs === "Descendente") {
-        data.sort((a, b) => b.healthScore - a.healthScore);
+        filteredData.sort((a, b) => b.healthScore - a.healthScore);
       }
-      const recipesData = selectItemsPerPage(data);
+      const recipesData = selectItemsPerPage(filteredData);
       setRecipes(recipesData);
     } catch (error) {
       console.error(error);
@@ -67,6 +77,7 @@ function App() {
   };
 
   const handleSearch = async (title) => {
+    setSearchTerm(title);
     if (!title) {
       window.alert("Ingrese el nombre de la receta que desea buscar.");
     } else {
