@@ -15,7 +15,9 @@ export default function Login(props) {
       <div className="bienvenidos">
         <h1>Bienvenidos</h1>
         <Link to={"/home"}>
-          <button onClick={setAccess(true)}>Ingresar</button>
+          <button title="login" onClick={() => setAccess(true)}>
+            Ingresar
+          </button>
         </Link>
       </div>
     </div>

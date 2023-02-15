@@ -21,7 +21,7 @@ export default function Detail() {
       }
     };
     fetchData();
-  }, []);
+  }, [detailId]);
 
   return (
     <div className="detail">

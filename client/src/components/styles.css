@@ -303,6 +303,17 @@
   padding-top: 5px;
 }
 
+#emptyFavorites {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  color: #354259;
+}
+
 /* Create */
 .form {
   margin: auto;
@@ -371,4 +382,33 @@
 .danger {
   color: rgb(223, 0, 0);
   font-size: 12px;
+}
+
+/* Information */
+.information {
+  position: relative;
+  padding-left: 60px;
+  padding-right: 60px;
+  background-color: #314e52;
+  bottom: 0px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 18px;
+}
+
+.contact {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  width: 150px;
+}
+
+.contact img {
+  margin-left: 7px;
+
+  width: 30px;
 }

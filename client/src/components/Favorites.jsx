@@ -26,18 +26,22 @@ export default function Favorites() {
     <div className="favorites">
       <h1>Favorites ⭐</h1>
       <Filters handleClickFavorites={handleClickFavorites} />
-      <div className="cards">
-        {myFavorites.map((recipe) => (
-          <Card
-            key={recipe.id}
-            id={recipe.id}
-            title={recipe.title}
-            diets={recipe.diets}
-            healthScore={recipe.healthScore}
-            image={recipe.image}
-          />
-        ))}
-      </div>
+      {myFavorites.length === 0 ? (
+        <div id="emptyFavorites">Favorite Recipes are empty.</div>
+      ) : (
+        <div className="cards">
+          {myFavorites.map((recipe) => (
+            <Card
+              key={recipe.id}
+              id={recipe.id}
+              title={recipe.title}
+              diets={recipe.diets}
+              healthScore={recipe.healthScore}
+              image={recipe.image}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

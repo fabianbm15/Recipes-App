@@ -10,7 +10,7 @@ import Body from "./components/Body";
 import Detail from "./components/Detail";
 import Create from "./components/Create";
 import Favorites from "./components/Favorites";
-import { useSelector, useDispatch } from "react-redux";
+import Information from "./components/Information";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,6 +73,10 @@ function App() {
   }, [currentPage, selectedFilter, selectedOrderAlpha, selectedOrderHs]);
 
   const handleHomeClick = () => {
+    setCurrentPage(1);
+    setSelectedFilter("Default");
+    setSelectedOrderAlpha("Default");
+    setSelectedOrderHs("Default");
     fetchData();
   };
 
@@ -145,6 +149,7 @@ function App() {
         <Route path="/create" element={<Create />}></Route>
         <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
+      {location.pathname === "/" ? null : <Information />}
     </div>
   );
 }
