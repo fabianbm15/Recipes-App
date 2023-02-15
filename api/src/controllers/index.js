@@ -88,8 +88,10 @@ const getRecipesId = async function (req, res) {
     let recipe = {};
 
     data = await Recipes.findByPk(id);
+    console.log(data);
     if (data) {
       const diets = await data.getDiets();
+      console.log(data);
       recipe = {
         id: data.id,
         title: data.title,
@@ -100,11 +102,6 @@ const getRecipesId = async function (req, res) {
         healthScore: data.healthScore,
         instructions: data.instructions,
       };
-
-      return res.status(200).json({
-        message: "No existen recetas con este id.",
-        data: [],
-      });
     } else {
       const data = await RecipesExts.findByPk(id);
       if (data) {
@@ -323,17 +320,11 @@ const deleteFavId = function (req, res) {
   const { id } = req.params;
   let recipe = {};
 
-  if (!Number(id)) {
-    recipe = fav.find((e) => e.id === String(id));
-    if (recipe) {
-      fav = fav.filter((e) => e.id !== String(id));
-    }
-  } else {
-    recipe = fav.find((e) => e.id === Number(id));
-    if (recipe) {
-      fav = fav.filter((e) => e.id !== Number(id));
-    }
+  recipe = fav.find((e) => e.id === String(id));
+  if (recipe) {
+    fav = fav.filter((e) => e.id !== String(id));
   }
+
   res.status(200).end(JSON.stringify(fav));
 };
 
