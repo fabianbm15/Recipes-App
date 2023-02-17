@@ -9,6 +9,7 @@ export default function Body(props) {
       <Pages
         currentPage={props.currentPage}
         setCurrentPage={props.setCurrentPage}
+        maxPage={props.maxPage}
       />
     </div>
   );

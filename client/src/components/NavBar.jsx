@@ -1,22 +1,33 @@
 import "./styles.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 export default function NavBar(props) {
-  const { handleHomeClick } = props;
+  const location = useLocation();
+
+  const handleClick = function () {
+    props.setSearchTerm(false);
+    props.setFavoritesPage(false);
+  };
+
   return (
     <div className="navBar">
       <Link to={"/home"}>
-        <button onClick={handleHomeClick}>Home</button>
+        <button id="home" onClick={handleClick}>
+          <h1>FoodCook</h1>
+        </button>
       </Link>
       <Link to={"/favorites"}>
         <button>My Favorites</button>
       </Link>
       <Link to={"/create"}>
-        <button>Create Recipe</button>
+        <button onClick={handleClick}>Create Recipe</button>
       </Link>
-      <SearchBar handleSearch={props.handleSearch} />
+
+      {location.pathname === "/home" ? null : (
+        <SearchBar setSearchTerm={props.setSearchTerm} />
+      )}
       <Link to={"/"}>
         <button id="logOutButton" onClick={props.logout}>
           Log Out

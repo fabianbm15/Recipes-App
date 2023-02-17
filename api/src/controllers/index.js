@@ -138,13 +138,7 @@ const getRecipesId = async function (req, res) {
 const getRecipes = async function (req, res) {
   try {
     let localRecipes = await Recipes.findAll();
-    let apiRecipes = [];
-    if (localRecipes.length < 90) {
-      const totalRecipesNeeded = 90 - localRecipes.length;
-      apiRecipes = await RecipesExts.findAll({
-        limit: totalRecipesNeeded,
-      });
-    }
+    let apiRecipes = await RecipesExts.findAll();
 
     const recipes = [...localRecipes, ...apiRecipes];
 
@@ -269,7 +263,7 @@ const postRecipes = async (req, res) => {
 const downloadRecipes = async (req, res) => {
   try {
     let recipe = {};
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 130; i <= 230; i++) {
       const API_URL = `https://api.spoonacular.com/recipes/${i}/information?apiKey=${API_KEY}`;
 
       try {

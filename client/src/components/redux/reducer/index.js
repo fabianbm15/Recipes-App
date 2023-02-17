@@ -1,14 +1,17 @@
 import {
   ADD_FAVORITES,
   DELETE_FAVORITES,
-  FILTER,
-  ORDER_BY_ALPHA,
-  ORDER_BY_HS,
+  GET_RECIPES,
+  SORT_RECIPES,
+  SEARCH_RECIPES,
 } from "../actions/types";
 
 const initialState = {
   myFavorites: [],
   myFavoritesOrigin: [],
+  allRecipes: [],
+  allRecipesOrigin: [],
+  searchedRecipes: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -28,60 +31,65 @@ export default function rootReducer(state = initialState, { type, payload }) {
         myFavorites: filterMyFavorites,
         myFavoritesOrigin: filterMyFavorites,
       };
-    case FILTER:
-      if (payload === "Default") {
-        return {
-          ...state,
-          myFavorites: [...state.myFavoritesOrigin],
-        };
+    case GET_RECIPES:
+      return {
+        ...state,
+        allRecipes: payload,
+        allRecipesOrigin: payload,
+      };
+    case SORT_RECIPES:
+      let allData = [];
+      const {
+        selectedFilter,
+        selectedOrderAlpha,
+        selectedOrderHs,
+        favoritesPage,
+      } = payload;
+
+      if (!payload.searchTerm && !favoritesPage) {
+        allData = [...state.allRecipesOrigin];
+      } else if (favoritesPage) {
+        allData = [...state.myFavoritesOrigin];
       } else {
-        const filterCopy = [...state.myFavoritesOrigin];
-        const filter = filterCopy.filter((recipe) => {
-          return recipe.diets.includes(payload);
+        allData = [...state.searchedRecipes];
+      }
+
+      let filteredData = allData;
+
+      if (selectedFilter !== "Default") {
+        filteredData = allData.filter((e) => {
+          return e.diets.includes(selectedFilter);
         });
-        return {
-          ...state,
-          myFavorites: filter,
-        };
       }
-    case ORDER_BY_ALPHA:
-      if (payload === "Default") {
+
+      if (selectedOrderAlpha === "A-Z") {
+        filteredData.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (selectedOrderAlpha === "Z-A") {
+        filteredData.sort((a, b) => b.title.localeCompare(a.title));
+      }
+      if (selectedOrderHs === "Ascendente") {
+        filteredData.sort((a, b) => a.healthScore - b.healthScore);
+      } else if (selectedOrderHs === "Descendente") {
+        filteredData.sort((a, b) => b.healthScore - a.healthScore);
+      }
+      if (favoritesPage) {
         return {
           ...state,
-          myFavorites: [...state.myFavoritesOrigin],
+          myFavorites: filteredData,
         };
       } else {
-        const orderCopy = [...state.myFavoritesOrigin];
-        let order = "";
-        if (payload === "A-Z") {
-          order = orderCopy.sort((a, b) => a.title.localeCompare(b.title));
-        } else if (payload === "Z-A") {
-          order = orderCopy.sort((a, b) => b.title.localeCompare(a.title));
-        }
         return {
           ...state,
-          myFavorites: order,
+          allRecipes: filteredData,
         };
       }
-    case ORDER_BY_HS:
-      if (payload === "Default") {
-        return {
-          ...state,
-          myFavorites: [...state.myFavoritesOrigin],
-        };
-      } else {
-        const orderCopy = [...state.myFavoritesOrigin];
-        let order = "";
-        if (payload === "Ascendente") {
-          order = orderCopy.sort((a, b) => a.healthScore - b.healthScore);
-        } else if (payload === "Descendente") {
-          order = orderCopy.sort((a, b) => b.healthScore - a.healthScore);
-        }
-        return {
-          ...state,
-          myFavorites: order,
-        };
-      }
+
+    case SEARCH_RECIPES:
+      return {
+        ...state,
+        allRecipes: payload,
+        searchedRecipes: payload,
+      };
     default:
       return state;
   }

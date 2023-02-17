@@ -3,9 +3,9 @@ import axios from "axios";
 import {
   ADD_FAVORITES,
   DELETE_FAVORITES,
-  FILTER,
-  ORDER_BY_ALPHA,
-  ORDER_BY_HS,
+  GET_RECIPES,
+  SORT_RECIPES,
+  SEARCH_RECIPES,
 } from "./types";
 
 export const addFavorite = function (recipe) {
@@ -37,23 +37,53 @@ export const deleteFavorite = function (id) {
   };
 };
 
-export const filterCards = function (status) {
-  return {
-    type: FILTER,
-    payload: status,
+export const getRecipes = function () {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/allrecipes`);
+      const data = response.data.data;
+      dispatch({
+        type: GET_RECIPES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const orderCardsAlpha = function (id) {
+export const sortRecipes = function (
+  selectedFilter,
+  selectedOrderAlpha,
+  selectedOrderHs,
+  searchTerm,
+  favoritesPage
+) {
   return {
-    type: ORDER_BY_ALPHA,
-    payload: id,
+    type: SORT_RECIPES,
+    payload: {
+      selectedFilter,
+      selectedOrderAlpha,
+      selectedOrderHs,
+      searchTerm,
+      favoritesPage,
+    },
   };
 };
 
-export const orderCardsHs = function (id) {
-  return {
-    type: ORDER_BY_HS,
-    payload: id,
+export const searchRecipes = function (title) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/recipes?title=${title}`
+      );
+      const data = response.data.data;
+      dispatch({
+        type: SEARCH_RECIPES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

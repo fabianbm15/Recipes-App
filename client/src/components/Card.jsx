@@ -34,33 +34,38 @@ export default function Card(props) {
 
   return (
     <div className="card">
-      <img className="imageRecipe" src={image} alt={image} />
-      {isFav ? (
-        <button
-          className="favoritesButton"
-          onClick={() => {
-            handleFavorite(props);
-          }}
-        >
-          <img src={favoritesOn} alt={favoritesOn} />
-        </button>
-      ) : (
-        <button
-          className="favoritesButton"
-          onClick={() => handleFavorite(props)}
-        >
-          <img src={favoritesOff} alt={favoritesOff} />
-        </button>
-      )}
-      <div className="healthScore">
-        <img src={healthScoreImage} alt={healthScoreImage} />
-        <p>{healthScore}</p>
+      <div id="imageFavHs">
+        <img className="imageRecipe" src={image} alt={image} />
+        <div id="divFavHs">
+          {isFav ? (
+            <button
+              className="favoritesButton"
+              onClick={() => {
+                handleFavorite(props);
+              }}
+            >
+              <img src={favoritesOn} alt={favoritesOn} />
+            </button>
+          ) : (
+            <button
+              className="favoritesButton"
+              onClick={() => handleFavorite(props)}
+            >
+              <img src={favoritesOff} alt={favoritesOff} />
+            </button>
+          )}
+          <div className="healthScore">
+            <img src={healthScoreImage} alt={healthScoreImage} />
+            <p>{healthScore}</p>
+          </div>
+        </div>
       </div>
-
-      <Link id="nameLink" to={`/detail/${id}`}>
-        <p>{title}</p>
-      </Link>
-      <h5>Diets: {textDiets}</h5>
+      <div id="cardNameDiets">
+        <Link id="nameLink" to={`/detail/${id}`}>
+          <p>{title}</p>
+        </Link>
+        <h5>Diets: {textDiets}</h5>
+      </div>
     </div>
   );
 }

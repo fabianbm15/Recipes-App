@@ -1,31 +1,18 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { filterCards, orderCardsAlpha, orderCardsHs } from "./redux/actions";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Card from "./Card";
-import Filters from "./Filters";
 
-export default function Favorites() {
-  const dispatch = useDispatch();
+export default function Favorites(props) {
+  const { setFavoritesPage } = props;
   const myFavorites = useSelector((s) => s.myFavorites);
 
-  function handleClickFavorites(e) {
-    e.preventDefault();
-    const { name, value } = e.target;
-    if (name === "filter") {
-      return dispatch(filterCards(value));
-    }
-    if (name === "orderAl") {
-      dispatch(orderCardsAlpha(value));
-    }
-    if (name === "orderHS") {
-      dispatch(orderCardsHs(value));
-    }
-  }
+  useEffect(() => {
+    setFavoritesPage(true);
+  }, []);
 
   return (
     <div className="favorites">
       <h1>Favorites ⭐</h1>
-      <Filters handleClickFavorites={handleClickFavorites} />
       {myFavorites.length === 0 ? (
         <div id="emptyFavorites">Favorite Recipes are empty.</div>
       ) : (

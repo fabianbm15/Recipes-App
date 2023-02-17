@@ -1,13 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchRecipes } from "./redux/actions";
 
 export default function SearchBar(props) {
+  const dispatch = useDispatch();
+  const { setSearchTerm } = props;
   const [title, setTitle] = useState("");
-  const { handleSearch } = props;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = function (e) {
     e.preventDefault();
-    handleSearch(title);
+    setSearchTerm(true);
+    dispatch(searchRecipes(title));
   };
 
   return (
