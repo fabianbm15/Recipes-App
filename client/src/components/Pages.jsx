@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Pages({ currentPage, setCurrentPage, maxPage }) {
   function prev() {
-    if (currentPage === 1) {
+    if (currentPage <= 1) {
       return;
     }
     setCurrentPage(currentPage - 1);
@@ -18,9 +18,14 @@ export default function Pages({ currentPage, setCurrentPage, maxPage }) {
   return (
     <div className="pages">
       <button onClick={prev}>Prev</button>
-      <button id="buttonCurrentPage">
-        {currentPage} de {maxPage}
-      </button>
+      {maxPage === 0 ? (
+        <button id="buttonCurrentPage">{currentPage}</button>
+      ) : (
+        <button id="buttonCurrentPage">
+          {currentPage} de {maxPage}
+        </button>
+      )}
+
       <button onClick={next}>Next</button>
     </div>
   );

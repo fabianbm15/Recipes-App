@@ -13,6 +13,8 @@ const {
   postFav,
   deleteFavId,
   downloadRecipes,
+  getCreatedRecipes,
+  deleteCreatedRecipesId,
 } = require("./../controllers/index");
 
 // Configurar los routers
@@ -30,5 +32,9 @@ router.delete("/fav/:id", deleteFavId);
 
 // Download recipes
 router.get("/downloadrecipes", downloadRecipes);
+
+// Created Recipes
+router.get("/createdrecipes", getCreatedRecipes);
+router.delete("/createdrecipes/:id", deleteCreatedRecipesId);
 
 module.exports = router;

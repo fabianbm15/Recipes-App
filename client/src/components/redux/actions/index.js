@@ -6,6 +6,8 @@ import {
   GET_RECIPES,
   SORT_RECIPES,
   SEARCH_RECIPES,
+  GET_CREATED_RECIPES,
+  DELETE_CREATED_RECIPES,
 } from "./types";
 
 export const addFavorite = function (recipe) {
@@ -57,7 +59,8 @@ export const sortRecipes = function (
   selectedOrderAlpha,
   selectedOrderHs,
   searchTerm,
-  favoritesPage
+  favoritesPage,
+  createdPage
 ) {
   return {
     type: SORT_RECIPES,
@@ -67,6 +70,7 @@ export const sortRecipes = function (
       selectedOrderHs,
       searchTerm,
       favoritesPage,
+      createdPage,
     },
   };
 };
@@ -81,6 +85,35 @@ export const searchRecipes = function (title) {
       dispatch({
         type: SEARCH_RECIPES,
         payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCreatedRecipe = function () {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/createdrecipes/`);
+      const data = response.data.data;
+      dispatch({
+        type: GET_CREATED_RECIPES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteCreatedRecipe = function (id) {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`http://localhost:3001/createdrecipes/${id}`);
+      dispatch({
+        type: DELETE_CREATED_RECIPES,
+        payload: id,
       });
     } catch (error) {
       console.log(error);

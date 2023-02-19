@@ -1,25 +1,32 @@
 import "./styles.css";
-import homeImage from "../image/homeImage.png";
 import downArrowImage from "../image/downArrow.png";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { searchRecipes } from "./redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { searchRecipes, getRecipes } from "./redux/actions";
 import { Link } from "react-router-dom";
 
 export default function SearchBarHome(props) {
   const dispatch = useDispatch();
-  const { setSearchTerm, allRecipes } = props;
+  const { setSearchTerm } = props;
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+  const allRecipes = useSelector((store) => store.allRecipes);
+  const [recipes, setRecipes] = useState([]);
   const [randomNum, setRandomNum] = useState(
     Math.floor(Math.random() * allRecipes.length)
   );
 
+  useEffect(() => {
+    dispatch(getRecipes());
+    setRecipes(allRecipes);
+  }, []);
+
   const handleSubmit = function (e) {
     e.preventDefault();
     setSearchTerm(true);
-    dispatch(searchRecipes(title));
+    dispatch(searchRecipes(searchTitle));
   };
 
   useEffect(() => {
@@ -27,28 +34,28 @@ export default function SearchBarHome(props) {
   }, []);
 
   const handleRandomRecipe = function () {
-    if (allRecipes.length > 0) {
-      setRandomNum(Math.floor(Math.random() * allRecipes.length));
-      setImage(allRecipes[randomNum].image);
-      setTitle(allRecipes[randomNum].title);
+    if (recipes.length > 0) {
+      setRandomNum(Math.floor(Math.random() * recipes.length));
+      setImage(recipes[randomNum].image);
+      setTitle(recipes[randomNum].title);
     }
   };
 
   useEffect(() => {
-    if (allRecipes.length > 0) {
-      setImage(allRecipes[randomNum].image);
-      setTitle(allRecipes[randomNum].title);
+    if (recipes.length > 0) {
+      setImage(recipes[randomNum].image);
+      setTitle(recipes[randomNum].title);
     }
-  }, [randomNum, allRecipes]);
+  }, [randomNum, recipes]);
 
   return (
     <div className="searchBarHome">
       <div id="nameForm">
         <div id="divTitle">
-          {image ? (
+          {recipes && recipes.length > 0 && image ? (
             <Link
               id="titleSearchBarHome"
-              to={`/detail/${allRecipes[randomNum].id}`}
+              to={`/detail/${recipes[randomNum].id}`}
             >
               <h1>{title}</h1>
             </Link>
@@ -63,15 +70,15 @@ export default function SearchBarHome(props) {
             <input
               type="search"
               name="search"
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setSearchTitle(e.target.value)}
             />
             <button>Buscar</button>
           </form>
         </div>
       </div>
       <div>
-        {image ? (
-          <Link to={`/detail/${allRecipes[randomNum].id}`}>
+        {recipes && recipes.length > 0 && image ? (
+          <Link to={recipes.length ? `/detail/${recipes[randomNum].id}` : "#"}>
             <img id="homeImage" src={image} alt={image} />
           </Link>
         ) : (

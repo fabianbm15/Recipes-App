@@ -57,7 +57,8 @@ export default function Create() {
     }
   }
 
-  const handleSubmit = async function () {
+  const handleSubmit = async function (e) {
+    e.preventDefault();
     await axios.post(`http://localhost:3001/recipes`, recipeData);
     window.alert("La receta se ha creado con éxito.");
   };

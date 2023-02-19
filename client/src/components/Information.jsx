@@ -1,7 +1,7 @@
 import "./styles.css";
 import React from "react";
-import facebookImage from "../facebook.png";
-import correoImage from "../correo.png";
+import facebookImage from "../image/facebook.png";
+import correoImage from "../image/correo.png";
 
 export default function Information() {
   return (

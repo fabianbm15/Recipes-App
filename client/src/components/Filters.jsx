@@ -8,7 +8,7 @@ export default function Filters(props) {
   const [selectedFilter, setSelectedFilter] = useState("Default");
   const [selectedOrderAlpha, setSelectedOrderAlpha] = useState("Default");
   const [selectedOrderHs, setSelectedOrderHs] = useState("Default");
-  const { searchTerm, favoritesPage } = props;
+  const { searchTerm, favoritesPage, createdPage } = props;
   const dispatch = useDispatch();
 
   function handleClick(e) {
@@ -33,7 +33,8 @@ export default function Filters(props) {
         selectedOrderAlpha,
         selectedOrderHs,
         searchTerm,
-        favoritesPage
+        favoritesPage,
+        createdPage
       )
     );
   }, [
@@ -42,6 +43,7 @@ export default function Filters(props) {
     selectedOrderHs,
     searchTerm,
     favoritesPage,
+    createdPage,
     dispatch,
   ]);
 

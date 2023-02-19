@@ -13,6 +13,7 @@ import Detail from "./components/Detail";
 import Create from "./components/Create";
 import Favorites from "./components/Favorites";
 import Information from "./components/Information";
+import CreatedRecipes from "./components/CreatedRecipes";
 
 function App() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState(false);
   const [favoritesPage, setFavoritesPage] = useState(false);
+  const [createdPage, setCreatedPage] = useState(false);
   const [access, setAccess] = useState(false);
   const allRecipes = useSelector((store) => store.allRecipes);
 
@@ -64,20 +66,22 @@ function App() {
             logout={logout}
             setSearchTerm={setSearchTerm}
             setFavoritesPage={setFavoritesPage}
+            setCreatedPage={setCreatedPage}
+            setCurrentPage={setCurrentPage}
           />
         )}
         {location.pathname === "/home" && searchTerm === false ? (
-          <SearchBarHome
-            recipes={recipes}
-            setSearchTerm={setSearchTerm}
-            allRecipes={allRecipes}
-          />
+          <SearchBarHome setSearchTerm={setSearchTerm} />
         ) : null}
         {location.pathname.split("/")[1] ===
         "" ? null : location.pathname.split("/")[1] ===
           "create" ? null : location.pathname.split("/")[1] ===
           "detail" ? null : (
-          <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} />
+          <Filters
+            searchTerm={searchTerm}
+            favoritesPage={favoritesPage}
+            createdPage={createdPage}
+          />
         )}
       </div>
       <Routes>
@@ -97,7 +101,25 @@ function App() {
         <Route path="/create" element={<Create />}></Route>
         <Route
           path="/favorites"
-          element={<Favorites setFavoritesPage={setFavoritesPage} />}
+          element={
+            <Favorites
+              setFavoritesPage={setFavoritesPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              selectItemsPerPage={selectItemsPerPage}
+            />
+          }
+        ></Route>
+        <Route
+          path="/createdrecipes"
+          element={
+            <CreatedRecipes
+              setCreatedPage={setCreatedPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              selectItemsPerPage={selectItemsPerPage}
+            />
+          }
         ></Route>
       </Routes>
       {location.pathname === "/" ? null : <Information />}

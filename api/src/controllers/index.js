@@ -140,8 +140,6 @@ const getRecipes = async function (req, res) {
     let localRecipes = await Recipes.findAll();
     let apiRecipes = await RecipesExts.findAll();
 
-    const recipes = [...localRecipes, ...apiRecipes];
-
     // Aquí se agrega la información de las dietas solo a las localRecipes
     localRecipes = await Promise.all(
       localRecipes.map(async (recipe) => {
@@ -263,7 +261,7 @@ const postRecipes = async (req, res) => {
 const downloadRecipes = async (req, res) => {
   try {
     let recipe = {};
-    for (let i = 130; i <= 230; i++) {
+    for (let i = 360; i <= 490; i++) {
       const API_URL = `https://api.spoonacular.com/recipes/${i}/information?apiKey=${API_KEY}`;
 
       try {
@@ -340,6 +338,58 @@ const deleteRecipe = function (req, res) {
   res.status(200).end(JSON.stringify(fav));
 };
 
+const getCreatedRecipes = async function (req, res) {
+  try {
+    let localRecipes = await Recipes.findAll();
+
+    localRecipes = await Promise.all(
+      localRecipes.map(async (recipe) => {
+        const diets = await recipe.getDiets();
+        return {
+          ...recipe.toJSON(),
+          diets: diets.map((diet) => diet.name),
+        };
+      })
+    );
+
+    return res.status(200).json({
+      message: "Recetas obtenidas con éxito.",
+      data: localRecipes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ha ocurrido un error al obtener las recetas.",
+      data: error,
+    });
+  }
+};
+
+const deleteCreatedRecipesId = async function (req, res) {
+  try {
+    const { id } = req.params; // obtén el identificador de los parámetros de la solicitud
+
+    data = await Recipes.findByPk(id);
+    if (data) {
+      await Recipes.destroy({ where: { id } }); // elimina la receta con el identificador especificado
+    } else {
+      return res.status(200).json({
+        message: "No hay recetas con este id.",
+        data: [],
+      });
+    }
+
+    return res.status(200).json({
+      message: "Receta eliminaca con éxito.",
+      data: [],
+    });
+  } catch (error) {
+    return res.status(200).json({
+      message: "Ha ocurrido un error al intentar eliminar la receta.",
+      data: error,
+    });
+  }
+};
+
 module.exports = {
   getRecipesName,
   getRecipesId,
@@ -350,6 +400,8 @@ module.exports = {
   postFav,
   deleteFavId,
   downloadRecipes,
+  getCreatedRecipes,
+  deleteCreatedRecipesId,
 };
 
 /*

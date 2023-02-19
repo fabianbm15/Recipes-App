@@ -4,6 +4,8 @@ import {
   GET_RECIPES,
   SORT_RECIPES,
   SEARCH_RECIPES,
+  DELETE_CREATED_RECIPES,
+  GET_CREATED_RECIPES,
 } from "../actions/types";
 
 const initialState = {
@@ -12,6 +14,8 @@ const initialState = {
   allRecipes: [],
   allRecipesOrigin: [],
   searchedRecipes: [],
+  createdRecipes: [],
+  createdRecipesOrigin: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -44,12 +48,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
         selectedOrderAlpha,
         selectedOrderHs,
         favoritesPage,
+        createdPage,
       } = payload;
-
-      if (!payload.searchTerm && !favoritesPage) {
+      if (!payload.searchTerm && !favoritesPage && !createdPage) {
         allData = [...state.allRecipesOrigin];
       } else if (favoritesPage) {
         allData = [...state.myFavoritesOrigin];
+      } else if (createdPage) {
+        allData = [...state.createdRecipesOrigin];
       } else {
         allData = [...state.searchedRecipes];
       }
@@ -77,6 +83,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
           ...state,
           myFavorites: filteredData,
         };
+      } else if (createdPage) {
+        return {
+          ...state,
+          createdRecipes: filteredData,
+        };
       } else {
         return {
           ...state,
@@ -89,6 +100,23 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         allRecipes: payload,
         searchedRecipes: payload,
+      };
+
+    case GET_CREATED_RECIPES:
+      return {
+        ...state,
+        createdRecipes: payload,
+        createdRecipesOrigin: payload,
+      };
+
+    case DELETE_CREATED_RECIPES:
+      const filterCreatedRecipe = state.createdRecipes.filter((recipe) => {
+        return recipe.id !== payload;
+      });
+      return {
+        ...state,
+        createdRecipes: filterCreatedRecipe,
+        createdRecipesOrigin: filterCreatedRecipe,
       };
     default:
       return state;

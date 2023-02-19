@@ -9,6 +9,8 @@ export default function NavBar(props) {
   const handleClick = function () {
     props.setSearchTerm(false);
     props.setFavoritesPage(false);
+    props.setCreatedPage(false);
+    props.setCurrentPage(1);
   };
 
   return (
@@ -24,7 +26,9 @@ export default function NavBar(props) {
       <Link to={"/create"}>
         <button onClick={handleClick}>Create Recipe</button>
       </Link>
-
+      <Link to={"/createdrecipes"}>
+        <button onClick={handleClick}>Created Recipes</button>
+      </Link>
       {location.pathname === "/home" ? null : (
         <SearchBar setSearchTerm={props.setSearchTerm} />
       )}

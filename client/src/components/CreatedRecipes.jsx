@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCreatedRecipe } from "./redux/actions";
 import Card from "./Card";
 import Pages from "./Pages";
 
-export default function Favorites(props) {
-  const { setFavoritesPage, currentPage, setCurrentPage, selectItemsPerPage } =
+export default function CreatedRecipes(props) {
+  const { setCreatedPage, selectItemsPerPage, currentPage, setCurrentPage } =
     props;
   const [recipes, setRecipes] = useState([]);
   const [maxPage, setMaxPage] = useState(0);
-  const myFavorites = useSelector((s) => s.myFavorites);
-
+  const dispatch = useDispatch();
+  const createdRecipes = useSelector((s) => s.createdRecipes);
+  // Calcular las recetas creadas.
   useEffect(() => {
-    setFavoritesPage(true);
+    dispatch(getCreatedRecipe());
+    setCreatedPage(true);
   }, []);
 
+  // Asignar los datos de las recetas a Recipes para mosrar en pantalla.
   useEffect(() => {
-    setRecipes(selectItemsPerPage(myFavorites));
-    setMaxPage(Math.ceil(myFavorites.length / 9));
-  }, [currentPage, myFavorites]);
+    setRecipes(selectItemsPerPage(createdRecipes));
+    setMaxPage(Math.ceil(createdRecipes.length / 9));
+  }, [createdRecipes, currentPage]);
 
   return (
-    <div className="favorites">
-      <h1>Favorites ⭐</h1>
+    <div className="createdRecipes">
+      <h1>Created Recipes</h1>
       {recipes.length === 0 ? (
-        <div id="emptyFavorites">Favorite Recipes are empty.</div>
+        <div id="emptyFavorites">Created Recipes are empty.</div>
       ) : (
         <div className="cards">
           {recipes.map((recipe) => (

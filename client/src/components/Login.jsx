@@ -1,7 +1,7 @@
 import "./styles.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import loginImage from "../wallpaperFood.jpg";
+import loginImage from "../image/wallpaperFood.jpg";
 
 export default function Login(props) {
   const location = useLocation();

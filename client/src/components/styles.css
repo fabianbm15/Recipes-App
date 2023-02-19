@@ -119,6 +119,7 @@
 }
 
 #nameForm h4 {
+  color: #2b2b2b;
   margin: 0px;
 }
 
@@ -262,6 +263,20 @@
   border: 3px outset rgb(255, 255, 255);
 }
 
+#closeButton {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #00000000;
+  border: 0px;
+  padding: 0px;
+  cursor: pointer;
+}
+
+#closeImage {
+  width: 30px;
+}
+
 #imageFavHs {
   position: relative;
 }
@@ -285,7 +300,7 @@
   align-items: center;
   justify-content: right;
   flex-direction: row;
-  height: 32px;
+  height: 35px;
   width: 100px;
 }
 
@@ -305,19 +320,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: -10px;
   padding-right: 5px;
 }
 
 .healthScore img {
   width: 30px;
   height: 30px;
-  margin-bottom: -41px;
 }
 
 .healthScore p {
+  position: absolute;
+  color: #131313;
   font-weight: 600;
   font-size: 15px;
+  top: -9px;
 }
 
 #cardNameDiets {
@@ -363,6 +379,7 @@
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 30px;
 }
 
@@ -391,23 +408,25 @@
   font-family: Verdana, Geneva, sans-serif;
   font-size: 17px;
   font-style: normal;
+  width: 95%;
 }
 
 .divDetailImage {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  width: 95%;
+  margin: auto;
 }
 
 .divDetailImage img {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 500px;
+  width: 90%;
 }
 
 #detailsA {
   text-align: start;
-  width: 400px;
 }
 
 #detailsA h3 {
@@ -416,7 +435,7 @@
 
 #summaryInstructions {
   margin: auto;
-  width: 1000px;
+  width: 95%;
   font-size: 16px;
   font-weight: 100;
   text-align: justify;
@@ -425,7 +444,6 @@
 /* Favorites */
 .favorites h1 {
   margin: auto;
-  margin-bottom: 20px;
   background-color: #f9f7f7;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 40px;
@@ -546,4 +564,19 @@
   margin-left: 7px;
 
   width: 30px;
+}
+
+/* Created Recipes */
+.createdRecipes h1 {
+  margin: auto;
+  background-color: #f9f7f7;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  font-style: normal;
+  color: #354259;
+  width: 450px;
+  border-radius: 15px;
+  padding: 10px;
+  padding-top: 5px;
 }
