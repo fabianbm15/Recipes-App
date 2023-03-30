@@ -45,12 +45,6 @@ function App() {
       dispatch(getRecipes());
    }, []);
 
-   // Asignar los datos de las recetas a Recipes para mosrar en pantalla.
-   useEffect(() => {
-      setRecipes(selectItemsPerPage(allRecipes));
-      setMaxPage(Math.ceil(allRecipes.length / 9));
-   }, [allRecipes, currentPage, searchTerm]);
-
    // Calcular los ítems por página, en este caso 9.
    const selectItemsPerPage = (recipes) => {
       const start = (currentPage - 1) * itemsPerPage;
@@ -58,9 +52,15 @@ function App() {
       return recipes.slice(start, end);
    };
 
+   // Asignar los datos de las recetas a Recipes para mosrar en pantalla.
+   useEffect(() => {
+      setRecipes(selectItemsPerPage(allRecipes));
+      setMaxPage(Math.ceil(allRecipes.length / 9));
+   }, [allRecipes, currentPage, searchTerm]);
+
    return (
       <div className="App">
-         <div>
+         <div className="container">
             {location.pathname === "/" ? null : (
                <NavBar
                   logout={logout}
@@ -70,11 +70,9 @@ function App() {
                   setCurrentPage={setCurrentPage}
                />
             )}
-            {location.pathname === "/home" && searchTerm === false ? <SearchBarHome setSearchTerm={setSearchTerm} /> : null}
-            {location.pathname.split("/")[1] === "" ? null : location.pathname.split("/")[1] === "create" ? null : location.pathname.split("/")[1] ===
-              "detail" ? null : (
-               <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} createdPage={createdPage} />
-            )}
+            {location.pathname === "/home" ? <SearchBarHome searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> : null}
+
+            {location.pathname === "/home" ? <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} createdPage={createdPage} /> : null}
          </div>
          <Routes>
             <Route path="/" element={<Login setAccess={setAccess} />}></Route>

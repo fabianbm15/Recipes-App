@@ -10,7 +10,7 @@ import closeImage from "../image/cerrar.webp";
 
 export default function Card(props) {
    const { id, title, diets, image, healthScore } = props;
-   const textDiets = diets.join(", ");
+   const textDiets = diets.length === 0 ? "none" : diets.join(", ");
    const [isFav, setIsFav] = useState(false);
    const dispatch = useDispatch();
    const location = useLocation();
@@ -41,7 +41,9 @@ export default function Card(props) {
    return (
       <div className="card">
          <div id="imageFavHs">
-            <img className="imageRecipe" src={image} alt={image} />
+            <Link to={`/detail/${id}`}>
+               <img className="imageRecipe" src={image} alt={image} />
+            </Link>
             {location.pathname === "/createdrecipes" ? (
                <button id="closeButton" onClick={() => handleClickClose(id)}>
                   <img id="closeImage" src={closeImage} alt={closeImage} />

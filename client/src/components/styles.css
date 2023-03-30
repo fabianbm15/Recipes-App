@@ -1,6 +1,6 @@
 /* login */
 .container {
-   max-width: 1200px;
+   max-width: 1500px;
    margin: auto;
    padding: 2px;
 }
@@ -40,8 +40,13 @@
 
 .welcomeH1 {
    font-family: "Times New Roman", Times, serif;
-   font-size: clamp(16px, 7vw, 70px);
+   font-size: clamp(20px, 8.5vw, 100px);
    color: #112d4e;
+}
+
+.welcomeH1:hover {
+   transform: scale(1.05);
+   transition: transform 0.3s;
 }
 
 .divButton {
@@ -54,25 +59,50 @@
 
 .loginButton {
    width: 100%;
-   background-color: #49a07700;
-   color: #3f72af;
+   background-color: #ffffff;
+   color: #112d4e;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    font-size: clamp(14px, 3vw, 28px);
    padding: 14px;
    padding-left: 20px;
    padding-right: 20px;
    border: 4px;
-   border-style: groove;
-   border-color: #ffffff;
+   border: 1px solid gray;
+   border-radius: 40px;
    cursor: pointer;
 }
 
 .loginButton:hover {
-   transform: scale(1.2);
-   transition: transform 0.3s;
+   background-color: #eeeeee;
+}
+
+.loginButton:active {
+   position: relative;
+   top: 1px;
+}
+
+@media screen and (max-width: 800px) {
+   .loginImage {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+   }
+   .welcome {
+      width: 80%;
+      height: 30%;
+   }
+   .welcomeH1 {
+      font-size: clamp(20px, 17vw, 140px);
+   }
+   .loginButton {
+      font-size: clamp(20px, 12vw, 30px);
+   }
 }
 
 @media screen and (max-width: 600px) {
+   .welcome {
+      height: 20%;
+   }
    .loginButton {
       padding: 10px;
    }
@@ -84,16 +114,11 @@
    }
 }
 
-@media screen and (max-width: 370px) {
-   .loginButton {
-      padding: 0px;
-   }
-}
 /* Nav Bar */
 .navBar {
    position: fixed;
    top: 0;
-   width: 100%;
+   max-width: 1500px;
    z-index: 1;
    height: 90px;
    width: 100%;
@@ -113,6 +138,11 @@
    font-size: 15px;
    color: #112d4e;
    font-weight: 600;
+}
+
+.navBar button:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s;
 }
 
 #home {
@@ -143,14 +173,18 @@
 }
 
 /* SearchBar Home */
+.searchBarHomeEmpty {
+   height: 90px;
+}
+
 .searchBarHome {
    margin: auto;
-   margin-top: -50px;
+   margin-top: 100px;
    display: grid;
    align-items: center;
    grid-template-columns: repeat(2, 1fr);
    width: 90%;
-   height: 91vh;
+   height: 400px;
 }
 
 #nameForm {
@@ -171,7 +205,7 @@
 }
 
 #nameForm input {
-   width: 300px;
+   width: 250px;
    height: 39px;
    border: 1px solid #00000059;
 
@@ -201,6 +235,11 @@
    text-decoration: none;
 }
 
+#divTitle:hover {
+   transform: scale(1.1);
+   transition: transform 0.3s;
+}
+
 #titleSearchBarHome {
    text-decoration: none;
 }
@@ -208,6 +247,11 @@
 #homeImage {
    border: 2px outset white;
    width: 500px;
+}
+
+#homeImage:hover {
+   transform: scale(1.01);
+   transition: transform 0.3s;
 }
 
 .searchBarHome button {
@@ -224,18 +268,25 @@
    font-weight: 600;
 }
 
+.searchBarHome button:hover {
+   background-color: #011b3a;
+}
+
+#imageAndRandomButton {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
 #downArrow {
-   position: absolute;
-   left: 50%;
-   transform: translate(-50%);
+   margin-top: 30px;
    width: 50px;
-   bottom: 40px;
+   margin-bottom: 60px;
 }
 
 /* Filter */
 .filter {
    margin: auto;
-   margin-top: 10px;
    margin-bottom: 10px;
    background-color: #f9f7f7;
    display: grid;
@@ -243,7 +294,6 @@
    align-items: center;
    width: 600px;
    height: auto;
-   padding: 10px;
 }
 
 .filter h4 {
@@ -259,12 +309,21 @@
 
 .filter select {
    width: 150px;
-   height: 20px;
+   height: 40px;
 
-   font-size: 15px;
+   font-size: 20px;
    color: #000000;
    font-weight: 400;
    text-decoration: none solid rgb(68, 68, 68);
+   border-radius: 20px;
+}
+
+.filter select:hover {
+   background-color: #f0f0f0;
+}
+
+.filter select {
+   border-radius: 20px;
 }
 
 /* Body */
@@ -279,7 +338,7 @@
 
 /* Cards */
 .cards {
-   width: 95%;
+   width: 100%;
    display: grid;
    justify-content: center;
    grid-template-columns: repeat(3, 1fr);
@@ -306,14 +365,24 @@
    border: 3px outset rgb(255, 255, 255);
 }
 
+.card:hover {
+   transform: scale(1.1);
+   transition: transform 0.3s;
+}
+
 #closeButton {
    position: absolute;
-   top: 2px;
-   right: 2px;
+   top: 5px;
+   right: 5px;
    background-color: #00000000;
    border: 0px;
    padding: 0px;
    cursor: pointer;
+}
+
+#closeButton:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s;
 }
 
 #closeImage {
@@ -355,11 +424,16 @@
    margin-bottom: -2px;
 }
 
+.favoritesButton img:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s;
+}
 .healthScore {
    display: flex;
    flex-direction: column;
    align-items: center;
    padding-right: 5px;
+   cursor: default;
 }
 
 .healthScore img {
@@ -400,6 +474,11 @@
    text-decoration: none solid rgb(68, 68, 68);
 }
 
+#nameLink:hover {
+   transform: scale(1.05);
+   transition: transform 0.3s;
+}
+
 .card h5 {
    font-family: Verdana, Geneva, sans-serif;
    font-size: 15px;
@@ -409,6 +488,11 @@
 
    max-height: 2.6em;
    overflow: hidden;
+}
+
+.card h5:hover {
+   transform: scale(1.05);
+   transition: transform 0.3s;
 }
 
 /* Pages */
@@ -425,11 +509,23 @@
 .pages button {
    margin-left: 20px;
    margin-right: 20px;
-   font-size: 20px;
-   background-color: rgba(0, 0, 0, 0);
-   border: 0px;
-   border-bottom: 1px solid black;
+   padding: 14px;
+   border: 1px solid gray;
+   border-radius: 40px;
+
+   background-color: #ffffff;
    cursor: pointer;
+   color: #112d4e;
+   font-size: clamp(14px, 3vw, 28px);
+}
+
+.pages button:hover {
+   background-color: #eeeeee;
+}
+
+.pages button:active {
+   position: relative;
+   top: 1px;
 }
 
 #buttonCurrentPage {
@@ -443,6 +539,7 @@
 .detail {
    background-color: #f9f7f7;
    padding: 2%;
+   padding-top: 80px;
    border-radius: 25px;
    font-family: Verdana, Geneva, sans-serif;
    font-size: 17px;
@@ -464,8 +561,18 @@
    width: 90%;
 }
 
+.divDetailImage img:hover {
+   transform: scale(1.01);
+   transition: transform 0.3s;
+}
+
 #detailsA {
    text-align: start;
+}
+
+#detailsA h1:hover {
+   transform: scale(1.05);
+   transition: transform 0.3s;
 }
 
 #detailsA h3 {
@@ -481,8 +588,12 @@
 }
 
 /* Favorites */
+.favorites {
+   padding-top: 110px;
+}
 .favorites h1 {
    margin: auto;
+   margin-bottom: 20px;
    background-color: #f9f7f7;
    font-family: Verdana, Geneva, sans-serif;
    font-size: 40px;
@@ -492,7 +603,6 @@
    width: 350px;
    border-radius: 15px;
    padding: 10px;
-   padding-top: 5px;
 }
 
 #emptyFavorites {
@@ -510,6 +620,8 @@
 .form {
    margin: auto;
    padding: 45px;
+   padding-top: 120px;
+
    background-color: #f9f7f7;
    width: 800px;
    display: flex;
@@ -567,6 +679,11 @@
    cursor: pointer;
 }
 
+.form button:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s;
+}
+
 .warning {
    color: rgb(223, 0, 0);
 }
@@ -606,6 +723,9 @@
 }
 
 /* Created Recipes */
+.createdRecipes {
+   margin-top: 80px;
+}
 .createdRecipes h1 {
    margin: auto;
    background-color: #f9f7f7;
@@ -617,5 +737,93 @@
    width: 450px;
    border-radius: 15px;
    padding: 10px;
-   padding-top: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+   .searchBarHome {
+      grid-template-columns: repeat(1, 1fr);
+      height: 700px;
+   }
+   .searchBarHome button {
+      margin-top: 8px;
+   }
+   .searchBar input {
+      width: 150px;
+   }
+   .cards {
+      grid-template-columns: repeat(2, 1fr);
+   }
+   .divDetailImage {
+      grid-template-columns: repeat(1, 1fr);
+   }
+   .form {
+      width: auto;
+   }
+}
+
+@media screen and (max-width: 650px) {
+   .searchBarHome {
+      height: 600px;
+   }
+   .cards {
+      grid-template-columns: repeat(1, 1fr);
+   }
+   .filter {
+      grid-template-columns: repeat(1, 1fr);
+      width: auto;
+      height: 280px;
+   }
+   #homeImage {
+      width: 400px;
+   }
+   .searchBar input {
+      width: 100px;
+   }
+   .navBar {
+      height: 100px;
+   }
+   .information {
+      flex-direction: column;
+      justify-content: space-around;
+      height: 120px;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .navBar {
+      height: 220px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 10px;
+   }
+   #home {
+      margin-bottom: -30px;
+   }
+   .favorites {
+      margin-top: 130px;
+   }
+   .searchBarHome {
+      margin-top: 210px;
+   }
+   .divDetailImage {
+      margin-top: 150px;
+   }
+   .form {
+      margin-top: 150px;
+   }
+   .createdRecipes {
+      margin-top: 240px;
+   }
+   .createdRecipes h1 {
+      width: auto;
+   }
+   #homeImage {
+      width: 90%;
+   }
+   .searchBarHomeEmpty {
+      height: 250px;
+   }
+   .searchBar input {
+      width: 150px;
+   }
 }
