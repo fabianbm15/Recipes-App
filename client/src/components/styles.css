@@ -1,582 +1,621 @@
 /* login */
-.login {
-  margin-top: -90px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
+.container {
+   max-width: 1200px;
+   margin: auto;
+   padding: 2px;
+}
+
+.box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
 }
 
 .loginImage {
-  margin: auto;
-  width: 60%;
-  height: auto;
-  z-index: 1;
+   width: 70%;
+   height: auto;
 }
 
-.bienvenidos {
-  position: absolute;
-  margin: auto;
-  background-color: rgb(255, 255, 255);
-  height: auto;
-  width: 500px;
-  z-index: 2;
+.welcome {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgb(255, 255, 255);
+   height: 40%;
+   width: 35%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
 }
 
-.login h1 {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 80px;
-  color: #112d4e;
-  margin-top: 10px;
+.divWelcome {
+   width: 100%;
+   height: 60%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
-.login button {
-  background-color: #49a07700;
-  color: #3f72af;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 28px;
-  padding: 14px 15px;
-  border: 0px;
-  border: 4px;
-  border-style: groove;
-  border-color: #ffffff;
-  margin-bottom: 40px;
-  cursor: pointer;
+.welcomeH1 {
+   font-family: "Times New Roman", Times, serif;
+   font-size: clamp(16px, 7vw, 70px);
+   color: #112d4e;
 }
 
+.divButton {
+   width: 100%;
+   height: 40%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.loginButton {
+   width: 100%;
+   background-color: #49a07700;
+   color: #3f72af;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: clamp(14px, 3vw, 28px);
+   padding: 14px;
+   padding-left: 20px;
+   padding-right: 20px;
+   border: 4px;
+   border-style: groove;
+   border-color: #ffffff;
+   cursor: pointer;
+}
+
+.loginButton:hover {
+   transform: scale(1.2);
+   transition: transform 0.3s;
+}
+
+@media screen and (max-width: 600px) {
+   .loginButton {
+      padding: 10px;
+   }
+}
+
+@media screen and (max-width: 470px) {
+   .loginButton {
+      padding: 5px;
+   }
+}
+
+@media screen and (max-width: 370px) {
+   .loginButton {
+      padding: 0px;
+   }
+}
 /* Nav Bar */
 .navBar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-  height: 90px;
-  width: 100%;
-  background-color: #f9f7f7f1;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 1;
+   height: 90px;
+   width: 100%;
+   background-color: #f9f7f7f1;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
 }
 
 .navBar button {
-  color: black;
-  background-color: #00000000;
-  border: 0px;
-  cursor: pointer;
+   color: black;
+   background-color: #00000000;
+   border: 0px;
+   cursor: pointer;
 
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
-  color: #112d4e;
-  font-weight: 600;
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 15px;
+   color: #112d4e;
+   font-weight: 600;
 }
 
 #home {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  color: #3f72af;
+   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+   color: #3f72af;
 }
 
 /* SearchBar */
 .searchBar {
-  display: flex;
-  justify-content: space-around;
+   display: flex;
+   justify-content: space-around;
 }
 
 .searchBar input {
-  margin-right: 15px;
-  width: 300px;
-  height: 39px;
-  border: 1px solid #00000059;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
+   margin-right: 15px;
+   width: 300px;
+   height: 39px;
+   border: 1px solid #00000059;
+   border-top: 0px;
+   border-left: 0px;
+   border-right: 0px;
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 15px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 15px;
+   color: #000000;
+   font-weight: 400;
+   text-decoration: none solid rgb(68, 68, 68);
 }
 
 /* SearchBar Home */
 .searchBarHome {
-  margin: auto;
-  margin-top: -50px;
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(2, 1fr);
-  width: 90%;
-  height: 91vh;
+   margin: auto;
+   margin-top: -50px;
+   display: grid;
+   align-items: center;
+   grid-template-columns: repeat(2, 1fr);
+   width: 90%;
+   height: 91vh;
 }
 
 #nameForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 200px;
 }
 
 #nameForm h4 {
-  color: #2b2b2b;
-  margin: 0px;
+   color: #2b2b2b;
+   margin: 0px;
 }
 
 #nameForm form {
-  margin-top: 10px;
+   margin-top: 10px;
 }
 
 #nameForm input {
-  width: 300px;
-  height: 39px;
-  border: 1px solid #00000059;
+   width: 300px;
+   height: 39px;
+   border: 1px solid #00000059;
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 15px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 15px;
+   color: #000000;
+   font-weight: 400;
+   text-decoration: none solid rgb(68, 68, 68);
 }
 
 #nameForm button {
-  margin-left: 20px;
-  width: 80px;
+   margin-left: 20px;
+   width: 80px;
 }
 
 #divTitle {
-  margin: auto;
-  width: 92%;
+   margin: auto;
+   width: 92%;
 }
 
 #divTitle h1 {
-  max-height: 2.8em;
-  overflow: hidden;
-  color: #112d4e;
-  margin: 0px;
-  margin-top: -20px;
-  text-decoration: none;
+   max-height: 2.8em;
+   overflow: hidden;
+   color: #112d4e;
+   margin: 0px;
+   margin-top: -20px;
+   text-decoration: none;
 }
 
 #titleSearchBarHome {
-  text-decoration: none;
+   text-decoration: none;
 }
 
 #homeImage {
-  border: 2px outset white;
-  width: 500px;
+   border: 2px outset white;
+   width: 500px;
 }
 
 .searchBarHome button {
-  height: 40px;
-  width: 140px;
-  color: black;
-  background-color: #112d4e;
-  border: 0px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 600;
+   height: 40px;
+   width: 140px;
+   color: black;
+   background-color: #112d4e;
+   border: 0px;
+   border-radius: 2px;
+   cursor: pointer;
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 15px;
+   color: #ffffff;
+   font-weight: 600;
 }
 
 #downArrow {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  width: 50px;
-  bottom: 40px;
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%);
+   width: 50px;
+   bottom: 40px;
 }
 
 /* Filter */
 .filter {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f7f7;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  width: 600px;
-  height: auto;
-  padding: 10px;
+   margin: auto;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   background-color: #f9f7f7;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   align-items: center;
+   width: 600px;
+   height: auto;
+   padding: 10px;
 }
 
 .filter h4 {
-  margin-top: -2px;
-  margin-bottom: 2%;
+   margin-top: -2px;
+   margin-bottom: 2%;
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 15px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 15px;
+   color: #000000;
+   font-weight: 400;
+   text-decoration: none solid rgb(68, 68, 68);
 }
 
 .filter select {
-  width: 150px;
-  height: 20px;
+   width: 150px;
+   height: 20px;
 
-  font-size: 15px;
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
+   font-size: 15px;
+   color: #000000;
+   font-weight: 400;
+   text-decoration: none solid rgb(68, 68, 68);
 }
 
 /* Body */
 
 .body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   min-height: auto;
 }
 
 /* Cards */
 .cards {
-  width: 95%;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  background-color: #f9f7f7;
-  border-radius: 25px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin: auto;
-  min-height: auto;
+   width: 95%;
+   display: grid;
+   justify-content: center;
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: repeat(3, 1fr);
+   background-color: #f9f7f7;
+   border-radius: 25px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   margin: auto;
+   min-height: auto;
 }
 
 .card {
-  width: 300px;
-  height: 320px;
-  margin: auto;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  background-color: #112d4e;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border: 3px outset rgb(255, 255, 255);
+   width: 300px;
+   height: 320px;
+   margin: auto;
+   margin-top: 3%;
+   margin-bottom: 3%;
+   background-color: #112d4e;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   border: 3px outset rgb(255, 255, 255);
 }
 
 #closeButton {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background-color: #00000000;
-  border: 0px;
-  padding: 0px;
-  cursor: pointer;
+   position: absolute;
+   top: 2px;
+   right: 2px;
+   background-color: #00000000;
+   border: 0px;
+   padding: 0px;
+   cursor: pointer;
 }
 
 #closeImage {
-  width: 30px;
+   width: 30px;
 }
 
 #imageFavHs {
-  position: relative;
+   position: relative;
 }
 
 .imageRecipe {
-  width: 100%;
-  height: auto;
+   width: 100%;
+   height: auto;
 }
 
 #divFavHs {
-  position: absolute;
-  background: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+   position: absolute;
+   background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 
-  right: 0px;
-  bottom: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  flex-direction: row;
-  height: 35px;
-  width: 100px;
+   right: 0px;
+   bottom: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: right;
+   flex-direction: row;
+   height: 35px;
+   width: 100px;
 }
 
 .favoritesButton {
-  background-color: #00000000;
-  border: 0px;
-  cursor: pointer;
+   background-color: #00000000;
+   border: 0px;
+   cursor: pointer;
 }
 
 .favoritesButton img {
-  width: 30px;
-  height: 30px;
-  margin-bottom: -2px;
+   width: 30px;
+   height: 30px;
+   margin-bottom: -2px;
 }
 
 .healthScore {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-right: 5px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-right: 5px;
 }
 
 .healthScore img {
-  width: 30px;
-  height: 30px;
+   width: 30px;
+   height: 30px;
 }
 
 .healthScore p {
-  position: absolute;
-  color: #131313;
-  font-weight: 600;
-  font-size: 15px;
-  top: -9px;
+   position: absolute;
+   color: #131313;
+   font-weight: 600;
+   font-size: 15px;
+   top: -9px;
 }
 
 #cardNameDiets {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  text-align: left;
-  justify-content: left;
-  width: 90%;
-  margin-top: -10px;
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   text-align: left;
+   justify-content: left;
+   width: 90%;
+   margin-top: -10px;
 }
 
 #nameLink {
-  margin-bottom: -10px;
+   margin-bottom: -10px;
 
-  max-height: 3.6em;
-  overflow: hidden;
-  cursor: pointer;
+   max-height: 3.6em;
+   overflow: hidden;
+   cursor: pointer;
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 18px;
-  color: #e7e6e1;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 18px;
+   color: #e7e6e1;
 
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
+   font-weight: 400;
+   text-decoration: none solid rgb(68, 68, 68);
 }
 
 .card h5 {
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 15px;
-  font-weight: 100;
-  font-style: normal;
-  color: #e7e6e1;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 15px;
+   font-weight: 100;
+   font-style: normal;
+   color: #e7e6e1;
 
-  max-height: 2.6em;
-  overflow: hidden;
+   max-height: 2.6em;
+   overflow: hidden;
 }
 
 /* Pages */
 
 .pages {
-  margin: auto;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
+   margin: auto;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 30px;
 }
 
 .pages button {
-  margin-left: 20px;
-  margin-right: 20px;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0px;
-  border-bottom: 1px solid black;
-  cursor: pointer;
+   margin-left: 20px;
+   margin-right: 20px;
+   font-size: 20px;
+   background-color: rgba(0, 0, 0, 0);
+   border: 0px;
+   border-bottom: 1px solid black;
+   cursor: pointer;
 }
 
 #buttonCurrentPage {
-  background-color: #f9f7f7;
-  color: #000000;
-  border: 0px;
-  cursor: auto;
+   background-color: #f9f7f7;
+   color: #000000;
+   border: 0px;
+   cursor: auto;
 }
 
 /* Detail */
 .detail {
-  background-color: #f9f7f7;
-  padding: 2%;
-  border-radius: 25px;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 17px;
-  font-style: normal;
-  width: 95%;
+   background-color: #f9f7f7;
+   padding: 2%;
+   border-radius: 25px;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 17px;
+   font-style: normal;
+   width: 95%;
 }
 
 .divDetailImage {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  width: 95%;
-  margin: auto;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   align-items: center;
+   width: 95%;
+   margin: auto;
 }
 
 .divDetailImage img {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 90%;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   width: 90%;
 }
 
 #detailsA {
-  text-align: start;
+   text-align: start;
 }
 
 #detailsA h3 {
-  font-size: 16px;
+   font-size: 16px;
 }
 
 #summaryInstructions {
-  margin: auto;
-  width: 95%;
-  font-size: 16px;
-  font-weight: 100;
-  text-align: justify;
+   margin: auto;
+   width: 95%;
+   font-size: 16px;
+   font-weight: 100;
+   text-align: justify;
 }
 
 /* Favorites */
 .favorites h1 {
-  margin: auto;
-  background-color: #f9f7f7;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 40px;
-  font-weight: 800;
-  font-style: normal;
-  color: #354259;
-  width: 350px;
-  border-radius: 15px;
-  padding: 10px;
-  padding-top: 5px;
+   margin: auto;
+   background-color: #f9f7f7;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 40px;
+   font-weight: 800;
+   font-style: normal;
+   color: #354259;
+   width: 350px;
+   border-radius: 15px;
+   padding: 10px;
+   padding-top: 5px;
 }
 
 #emptyFavorites {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  color: #354259;
+   height: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 20px;
+   font-style: normal;
+   color: #354259;
 }
 
 /* Create */
 .form {
-  margin: auto;
-  padding: 45px;
-  background-color: #f9f7f7;
-  width: 800px;
-  display: flex;
-  justify-content: flex-start;
-  text-align: start;
-  border-radius: 20px;
+   margin: auto;
+   padding: 45px;
+   background-color: #f9f7f7;
+   width: 800px;
+   display: flex;
+   justify-content: flex-start;
+   text-align: start;
+   border-radius: 20px;
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  font-style: normal;
-  color: #222b3a;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 17px;
+   font-weight: 800;
+   font-style: normal;
+   color: #222b3a;
 }
 
 .form input {
-  border: 0px;
-  border-bottom: 1px solid black;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 17px;
-  font-weight: 100;
-  font-style: normal;
+   border: 0px;
+   border-bottom: 1px solid black;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 17px;
+   font-weight: 100;
+   font-style: normal;
 }
 
 .form h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  font-weight: 100;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   font-size: 13px;
+   font-weight: 100;
 }
 
 .diets {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
+   margin-top: 30px;
+   margin-bottom: 30px;
+   display: grid;
+   justify-content: center;
+   grid-template-columns: repeat(4, 1fr);
 
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 15px;
-  font-weight: 100;
-  font-style: normal;
-  color: #354259;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 15px;
+   font-weight: 100;
+   font-style: normal;
+   color: #354259;
 }
 
 .form button {
-  background-color: #49a078;
-  color: #fff;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  padding: 8px;
-  border: 0px;
-  border-radius: 3px;
-  display: inline-block;
-  cursor: pointer;
+   background-color: #49a078;
+   color: #fff;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 24px;
+   font-weight: 400;
+   padding: 8px;
+   border: 0px;
+   border-radius: 3px;
+   display: inline-block;
+   cursor: pointer;
 }
 
 .warning {
-  color: rgb(223, 0, 0);
+   color: rgb(223, 0, 0);
 }
 
 .danger {
-  color: rgb(223, 0, 0);
-  font-size: 12px;
+   color: rgb(223, 0, 0);
+   font-size: 12px;
 }
 
 /* Information */
 .information {
-  position: relative;
-  padding-left: 60px;
-  padding-right: 60px;
-  background-color: #112d4e;
-  bottom: 0px;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #ffffff;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 18px;
+   position: relative;
+   padding-left: 60px;
+   padding-right: 60px;
+   background-color: #112d4e;
+   bottom: 0px;
+   height: 100px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: #ffffff;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 18px;
 }
 
 .contact {
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  width: 150px;
+   display: grid;
+   align-items: center;
+   grid-template-columns: repeat(3, 1fr);
+   width: 150px;
 }
 
 .contact img {
-  margin-left: 7px;
+   margin-left: 7px;
 
-  width: 30px;
+   width: 30px;
 }
 
 /* Created Recipes */
 .createdRecipes h1 {
-  margin: auto;
-  background-color: #f9f7f7;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 40px;
-  font-weight: 800;
-  font-style: normal;
-  color: #354259;
-  width: 450px;
-  border-radius: 15px;
-  padding: 10px;
-  padding-top: 5px;
+   margin: auto;
+   background-color: #f9f7f7;
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 40px;
+   font-weight: 800;
+   font-style: normal;
+   color: #354259;
+   width: 450px;
+   border-radius: 15px;
+   padding: 10px;
+   padding-top: 5px;
 }
