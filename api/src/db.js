@@ -5,8 +5,11 @@ const modelRecipe = require("./models/Recipe");
 const modelDiet = require("./models/Diet");
 const modelRecipesExt = require("./models/RecipesExt");
 
-const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
+const db = new Sequelize(process.env.EXTERNAL_DATABASE_URL, {
    logging: false,
+   dialectOptions: {
+      ssl: true,
+   },
 });
 
 // Invocar los models
