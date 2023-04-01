@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+const BACK = process.env.REACT_APP_BACK;
+
 export default function Detail() {
    const { detailId } = useParams();
    const [recipe, setRecipe] = useState({});
@@ -11,7 +13,7 @@ export default function Detail() {
    useEffect(() => {
       const fetchData = async () => {
          try {
-            const response = await axios.get(`http://localhost:3001/recipes/${detailId}`);
+            const response = await axios.get(`${BACK}/recipes/${detailId}`);
             const data = response.data.data;
             setRecipe(data);
          } catch (error) {

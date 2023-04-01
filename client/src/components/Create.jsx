@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import validate from "./validate";
 
+const BACK = process.env.REACT_APP_BACK;
+
 export default function Create() {
    const [recipeData, setRecipeData] = useState({
       title: "",
@@ -69,7 +71,7 @@ export default function Create() {
                return;
             }
          }
-         await axios.post(`http://localhost:3001/recipes`, recipeData);
+         await axios.post(`${BACK}/recipes`, recipeData);
          window.alert("La receta se ha creado con éxito.");
       } catch (error) {}
    };

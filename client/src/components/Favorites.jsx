@@ -5,7 +5,7 @@ import Filters from "./Filters";
 import Pages from "./Pages";
 
 export default function Favorites(props) {
-   const { setFavoritesPage, currentPage, setCurrentPage, selectItemsPerPage } = props;
+   const { setFavoritesPage, currentPage, setCurrentPage, selectItemsPerPage, searchTerm, favoritesPage, createdPage } = props;
    const [recipes, setRecipes] = useState([]);
    const [maxPage, setMaxPage] = useState(0);
    const myFavorites = useSelector((s) => s.myFavorites);
@@ -27,7 +27,7 @@ export default function Favorites(props) {
                <div id="emptyFavorites">Favorite Recipes are empty.</div>
             ) : (
                <div>
-                  <Filters />
+                  <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} createdPage={createdPage} />
                   <div className="cards">
                      {recipes.map((recipe) => (
                         <Card

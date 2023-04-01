@@ -90,6 +90,9 @@ function App() {
                      currentPage={currentPage}
                      setCurrentPage={setCurrentPage}
                      selectItemsPerPage={selectItemsPerPage}
+                     searchTerm={searchTerm}
+                     favoritesPage={favoritesPage}
+                     createdPage={createdPage}
                   />
                }
             ></Route>
