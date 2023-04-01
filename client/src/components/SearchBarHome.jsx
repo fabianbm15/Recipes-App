@@ -18,8 +18,6 @@ export default function SearchBarHome(props) {
 
    useEffect(() => {
       if (allRecipes.length > 0 && !recipe.image) {
-         console.log("hola");
-
          setRecipe(allRecipes[randomNum]);
       }
    }, [allRecipes, randomNum, recipe.image]);
