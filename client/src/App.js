@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { getRecipes } from "./components/redux/actions";
@@ -43,20 +43,23 @@ function App() {
    // Calcular las recetas del home.
    useEffect(() => {
       dispatch(getRecipes());
-   }, []);
+   }, [dispatch]);
 
    // Calcular los ítems por página, en este caso 9.
-   const selectItemsPerPage = (recipes) => {
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      return recipes.slice(start, end);
-   };
+   const selectItemsPerPage = useCallback(
+      (recipes) => {
+         const start = (currentPage - 1) * itemsPerPage;
+         const end = start + itemsPerPage;
+         return recipes.slice(start, end);
+      },
+      [currentPage, itemsPerPage]
+   );
 
    // Asignar los datos de las recetas a Recipes para mosrar en pantalla.
    useEffect(() => {
       setRecipes(selectItemsPerPage(allRecipes));
       setMaxPage(Math.ceil(allRecipes.length / 9));
-   }, [allRecipes, currentPage, searchTerm]);
+   }, [allRecipes, currentPage, searchTerm, selectItemsPerPage]);
 
    return (
       <div className="App">

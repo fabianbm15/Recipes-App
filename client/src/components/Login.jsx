@@ -1,10 +1,8 @@
 import "./styles.css";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import loginImage from "../image/wallpaperFood.webp";
 
 export default function Login(props) {
-   const location = useLocation();
    const { setAccess } = props;
 
    return (

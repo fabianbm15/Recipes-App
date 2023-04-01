@@ -1,7 +1,7 @@
 import "./styles.css";
 import downArrowImage from "../image/downArrow.webp";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchRecipes, getRecipes } from "./redux/actions";
 import { Link } from "react-router-dom";
@@ -21,30 +21,32 @@ export default function SearchBarHome(props) {
       setRecipes(allRecipes);
    }, []);
 
-   const handleSubmit = function (e) {
-      e.preventDefault();
-      setSearchTerm(true);
-      dispatch(searchRecipes(searchTitle));
-   };
-
    useEffect(() => {
-      handleRandomRecipe();
-   }, []);
-
-   const handleRandomRecipe = function () {
-      if (recipes.length > 0) {
-         setRandomNum(Math.floor(Math.random() * recipes.length));
-         setImage(recipes[randomNum].image);
-         setTitle(recipes[randomNum].title);
-      }
-   };
-
-   useEffect(() => {
+      console.log("hola");
       if (recipes.length > 0) {
          setImage(recipes[randomNum].image);
          setTitle(recipes[randomNum].title);
       }
    }, [randomNum, recipes]);
+
+   const handleRandomRecipe = useCallback(() => {
+      if (recipes.length > 0) {
+         const newRandomNum = Math.floor(Math.random() * recipes.length);
+         setImage(recipes[newRandomNum].image);
+         setTitle(recipes[newRandomNum].title);
+         setRandomNum(newRandomNum);
+      }
+   }, [recipes, setImage, setTitle]);
+
+   useEffect(() => {
+      handleRandomRecipe();
+   }, [handleRandomRecipe]);
+
+   const handleSubmit = function (e) {
+      e.preventDefault();
+      setSearchTerm(true);
+      dispatch(searchRecipes(searchTitle));
+   };
 
    return (
       <div>

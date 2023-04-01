@@ -12,22 +12,22 @@ export default function Favorites(props) {
 
    useEffect(() => {
       setFavoritesPage(true);
-   }, []);
+   }, [setFavoritesPage]);
 
    useEffect(() => {
       setRecipes(selectItemsPerPage(myFavorites));
       setMaxPage(Math.ceil(myFavorites.length / 9));
-   }, [currentPage, myFavorites]);
+   }, [currentPage, myFavorites, selectItemsPerPage]);
 
    return (
       <div className="container">
          <div className="favorites">
             <h1>Favorites ⭐</h1>
+            <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} createdPage={createdPage} />
             {recipes.length === 0 ? (
                <div id="emptyFavorites">Favorite Recipes are empty.</div>
             ) : (
                <div>
-                  <Filters searchTerm={searchTerm} favoritesPage={favoritesPage} createdPage={createdPage} />
                   <div className="cards">
                      {recipes.map((recipe) => (
                         <Card

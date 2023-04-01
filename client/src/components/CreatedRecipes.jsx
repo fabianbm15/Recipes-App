@@ -14,13 +14,13 @@ export default function CreatedRecipes(props) {
    useEffect(() => {
       dispatch(getCreatedRecipe());
       setCreatedPage(true);
-   }, []);
+   }, [dispatch, setCreatedPage]);
 
    // Asignar los datos de las recetas a Recipes para mosrar en pantalla.
    useEffect(() => {
       setRecipes(selectItemsPerPage(createdRecipes));
       setMaxPage(Math.ceil(createdRecipes.length / 9));
-   }, [createdRecipes, currentPage]);
+   }, [createdRecipes, currentPage, selectItemsPerPage]);
 
    return (
       <div className="container">
