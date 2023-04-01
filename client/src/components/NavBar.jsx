@@ -30,7 +30,7 @@ export default function NavBar(props) {
             <Link to={"/createdrecipes"}>
                <button onClick={handleClick}>Created Recipes</button>
             </Link>
-            {location.pathname === "/home" ? null : <SearchBar setSearchTerm={props.setSearchTerm} />}
+            {location.pathname === "/home" && !props.searchTerm ? null : <SearchBar setSearchTerm={props.setSearchTerm} />}
             <Link to={"/"}>
                <button id="logOutButton" onClick={props.logout}>
                   Log Out

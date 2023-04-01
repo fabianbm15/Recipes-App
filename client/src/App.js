@@ -67,6 +67,7 @@ function App() {
             {location.pathname === "/" ? null : (
                <NavBar
                   logout={logout}
+                  searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
                   setFavoritesPage={setFavoritesPage}
                   setCreatedPage={setCreatedPage}

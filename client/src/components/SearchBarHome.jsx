@@ -1,7 +1,6 @@
 import "./styles.css";
 import downArrowImage from "../image/downArrow.webp";
-import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchRecipes, getRecipes } from "./redux/actions";
 import { Link } from "react-router-dom";
@@ -9,57 +8,51 @@ import { Link } from "react-router-dom";
 export default function SearchBarHome(props) {
    const dispatch = useDispatch();
    const { searchTerm, setSearchTerm } = props;
-   const [image, setImage] = useState("");
-   const [title, setTitle] = useState("");
-   const [searchTitle, setSearchTitle] = useState("");
    const allRecipes = useSelector((store) => store.allRecipes);
-   const [recipes, setRecipes] = useState([]);
    const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * allRecipes.length));
+   const [recipe, setRecipe] = useState({});
 
    useEffect(() => {
       dispatch(getRecipes());
-      setRecipes(allRecipes);
-   }, []);
+   }, [dispatch]);
 
    useEffect(() => {
-      console.log("hola");
-      if (recipes.length > 0) {
-         setImage(recipes[randomNum].image);
-         setTitle(recipes[randomNum].title);
+      if (allRecipes.length > 0 && !recipe.image) {
+         console.log("hola");
+
+         setRecipe(allRecipes[randomNum]);
       }
-   }, [randomNum, recipes]);
+   }, [allRecipes, randomNum, recipe.image]);
 
    const handleRandomRecipe = useCallback(() => {
-      if (recipes.length > 0) {
-         const newRandomNum = Math.floor(Math.random() * recipes.length);
-         setImage(recipes[newRandomNum].image);
-         setTitle(recipes[newRandomNum].title);
+      if (allRecipes.length > 0) {
+         const newRandomNum = Math.floor(Math.random() * allRecipes.length);
          setRandomNum(newRandomNum);
       }
-   }, [recipes, setImage, setTitle]);
+   }, [allRecipes, setRandomNum]);
 
    useEffect(() => {
       handleRandomRecipe();
    }, [handleRandomRecipe]);
 
-   const handleSubmit = function (e) {
+   const handleSubmit = (e) => {
       e.preventDefault();
       setSearchTerm(true);
-      dispatch(searchRecipes(searchTitle));
+      dispatch(searchRecipes(e.target.search.value));
    };
 
    return (
       <div>
-         {searchTerm === true ? (
+         {searchTerm ? (
             <div className="searchBarHomeEmpty"></div>
          ) : (
             <div>
                <div className="searchBarHome">
                   <div id="nameForm">
                      <div id="divTitle">
-                        {recipes && recipes.length > 0 && image ? (
-                           <Link id="titleSearchBarHome" to={`/detail/${recipes[randomNum].id}`}>
-                              <h1>{title}</h1>
+                        {recipe.id ? (
+                           <Link id="titleSearchBarHome" to={`/detail/${recipe.id}`}>
+                              <h1>{recipe.title}</h1>
                            </Link>
                         ) : (
                            <h1>Loading...</h1>
@@ -69,20 +62,19 @@ export default function SearchBarHome(props) {
                      <div>
                         <h4>Search recipes</h4>
                         <form onSubmit={handleSubmit}>
-                           <input type="search" name="search" onChange={(e) => setSearchTitle(e.target.value)} />
+                           <input type="search" name="search" />
                            <button>Buscar</button>
                         </form>
                      </div>
                   </div>
                   <div id="imageAndRandomButton">
-                     {recipes && recipes.length > 0 && image ? (
-                        <Link to={recipes.length ? `/detail/${recipes[randomNum].id}` : "#"}>
-                           <img id="homeImage" src={image} alt={image} />
+                     {recipe.id ? (
+                        <Link to={`/detail/${recipe.id}`}>
+                           <img id="homeImage" src={recipe.image} alt={recipe.title} />
                         </Link>
                      ) : (
                         <h1>Loading...</h1>
                      )}
-
                      <button onClick={handleRandomRecipe}>Random Recipe</button>
                   </div>
                </div>

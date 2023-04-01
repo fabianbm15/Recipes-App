@@ -245,7 +245,7 @@ const postRecipes = async (req, res) => {
 const downloadRecipes = async (req, res) => {
    try {
       let recipe = {};
-      for (let i = 0; i <= 140; i++) {
+      for (let i = 421; i <= 560; i++) {
          const API_URL = `https://api.spoonacular.com/recipes/${i}/information?apiKey=${API_KEY}`;
 
          try {
