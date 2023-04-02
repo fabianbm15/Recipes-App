@@ -11,27 +11,26 @@ export default function SearchBarHome(props) {
    const allRecipes = useSelector((store) => store.allRecipes);
    const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * allRecipes.length));
    const [recipe, setRecipe] = useState({});
+   const [randomRecipeSelected, setRandomRecipeSelected] = useState(false);
 
    useEffect(() => {
       dispatch(getRecipes());
    }, [dispatch]);
 
    useEffect(() => {
-      if (allRecipes.length > 0 && !recipe.image) {
+      if (allRecipes.length > 0) {
          setRecipe(allRecipes[randomNum]);
+         setRandomRecipeSelected(true);
       }
-   }, [allRecipes, randomNum, recipe.image]);
+   }, [allRecipes, randomNum, setRandomRecipeSelected]);
 
    const handleRandomRecipe = useCallback(() => {
       if (allRecipes.length > 0) {
          const newRandomNum = Math.floor(Math.random() * allRecipes.length);
          setRandomNum(newRandomNum);
+         setRandomRecipeSelected(false);
       }
-   }, [allRecipes, setRandomNum]);
-
-   useEffect(() => {
-      handleRandomRecipe();
-   }, [handleRandomRecipe]);
+   }, [allRecipes]);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -48,7 +47,7 @@ export default function SearchBarHome(props) {
                <div className="searchBarHome">
                   <div id="nameForm">
                      <div id="divTitle">
-                        {recipe.id ? (
+                        {randomRecipeSelected ? (
                            <Link id="titleSearchBarHome" to={`/detail/${recipe.id}`}>
                               <h1>{recipe.title}</h1>
                            </Link>
@@ -66,7 +65,7 @@ export default function SearchBarHome(props) {
                      </div>
                   </div>
                   <div id="imageAndRandomButton">
-                     {recipe.id ? (
+                     {randomRecipeSelected ? (
                         <Link to={`/detail/${recipe.id}`}>
                            <img id="homeImage" src={recipe.image} alt={recipe.title} />
                         </Link>
