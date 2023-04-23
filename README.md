@@ -22,5 +22,8 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
 - React
 - Redux
 
+# Demo
+Puedes ver una demostración en vivo de la aplicación aquí: [demo](https://foodcook-fabian.netlify.app/)
+
 # Contribuciones
 Si deseas contribuir al proyecto, no dudes en hacer un fork del repositorio y enviar un pull request con tus cambios.
